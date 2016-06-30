@@ -6,10 +6,27 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './components/app';
 import reducers from './reducers';
 
+/*
+
+state
+{
+  filter: completed/noncompleted
+  list-items: all list items
+}
+
+
+
+3 routes
+/ all list items
+/list-items/completed
+/list-items/new create new list item
+
+*/
+
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('#app'));
