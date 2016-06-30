@@ -1,12 +1,124 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/style/style.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-  </head>
-  <body>
+	<head>
+		<title>Bucket List</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/style/style.css">
+	</head>
+	<body>
     <div class="container"></div>
-  </body>
-  <script src="/bundle.js"></script>
+		<nav class="navbar navbar-inverse">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">Bucket List</a>
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="#">My Bucket List</a></li>
+	            <li><a href="#">Completed Items</a></li>
+	            <li><a href="#">Logout</a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>
+		<div class="container">
+		    <div class="row">
+		        <div class="col-md-8">
+		            <div>
+		            	<h4>Add new bucket list item</h4>
+						<form action="#">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Title">
+							</div>
+							<div class="form-group">
+								<textarea name="description" class="form-control" placeholder="Put the description of the item here."></textarea>
+							</div>
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Add categories">
+							</div>
+							<input type="submit" class="btn btn-warning">
+						</form>
+	                    <hr>
+	                    <ul class="list-group">
+		                    <li class="list-group-item clearfix">
+		                    	<h4 class="pull-left">Bucket List Item One - Closed</h4>
+		                        <div class="btn-group pull-right">
+								  <button type="button" class="btn btn-default">
+								  	<span class="glyphicon glyphicon-remove"></span>
+								  </button>
+								  <button type="button" class="btn btn-default">
+								  	<span class="glyphicon glyphicon-ok"></span>
+								  </button>
+								  <button type="button" class="btn btn-default">
+								  	<span class="glyphicon glyphicon-pencil"></span>
+								  </button>
+								  <button type="button" class="btn btn-default">
+								  	<span class="glyphicon glyphicon-chevron-down"></span>
+								  </button>
+								</div>
+		                    </li>
+		                    <li class="list-group-item clearfix active">
+		                    	<div class="clearfix">
+			                    	<h4 class="pull-left">Bucket List Item One - Open</h4>
+			                        <div class="btn-group pull-right">
+									  <button type="button" class="btn btn-default">
+									  	<span class="glyphicon glyphicon-remove"></span>
+									  </button>
+									  <button type="button" class="btn btn-default">
+									  	<span class="glyphicon glyphicon-ok"></span>
+									  </button>
+									  <button type="button" class="btn btn-default">
+									  	<span class="glyphicon glyphicon-pencil"></span>
+									  </button>
+									  <button type="button" class="btn btn-default">
+									  	<span class="glyphicon glyphicon-chevron-up"></span>
+									  </button>
+									</div>
+								</div>
+								<hr>
+								<div>
+									<h5>Description/Notes</h5>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem vero ab molestiae provident, culpa veniam assumenda quam autem non unde perferendis tempora perspiciatis porro placeat iure tenetur, molestias quis nisi.
+									</p>
+									<p>
+										Added February 2, 2015.
+									</p>
+								</div>
+								<hr>
+								<h5>Categories</h5>
+								<span class="label label-default">Default</span>
+								<span class="label label-default">Default</span>
+								<span class="label label-default">Default</span>
+		                    </li>
+		                    <li class="list-group-item clearfix">
+		                    	<h4 class="pull-left">Bucket List Item One - Closed</h4>
+		                        <div class="btn-group pull-right">
+          								  <button type="button" class="btn btn-default">
+          								  	<span class="glyphicon glyphicon-remove"></span>
+          								  </button>
+          								  <button type="button" class="btn btn-default">
+          								  	<span class="glyphicon glyphicon-ok"></span>
+          								  </button>
+          								  <button type="button" class="btn btn-default">
+          								  	<span class="glyphicon glyphicon-pencil"></span>
+          								  </button>
+          								  <button type="button" class="btn btn-default">
+          								  	<span class="glyphicon glyphicon-chevron-down"></span>
+          								  </button>
+          								</div>
+		                    </li>
+		                </ul>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+    <script src="/bundle.js"></script>
+	</body>
 </html>

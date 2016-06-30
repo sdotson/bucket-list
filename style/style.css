@@ -1,0 +1,4 @@
+.list-group-item.active .label-default {
+	background-color: #fff;
+	color: #337ab7;
+}
