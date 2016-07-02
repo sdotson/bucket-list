@@ -1,78 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class List extends Component {
+import ListItem from './list-item';
+
+class List extends Component {
+  renderList() {
+    return this.props.items.map((item) => {
+      return (
+        <ListItem {...item} key={item.id} />
+      );
+    });
+  }
   render() {
+    console.log(this.props.items);
     return (
       <ul className="list-group">
-      <li className="list-group-item clearfix">
-      <h4 className="pull-left">Bucket List Item One - Closed</h4>
-      <div className="btn-group pull-right">
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-remove"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-ok"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-pencil"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-chevron-down"></span>
-      </button>
-      </div>
-      </li>
-      <li className="list-group-item clearfix active">
-      <div className="clearfix">
-      <h4 className="pull-left">Bucket List Item One - Open</h4>
-      <div className="btn-group pull-right">
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-remove"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-ok"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-pencil"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-chevron-up"></span>
-      </button>
-      </div>
-      </div>
-      <hr />
-      <div>
-      <h5>Description/Notes</h5>
-      <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem vero ab molestiae provident, culpa veniam assumenda quam autem non unde perferendis tempora perspiciatis porro placeat iure tenetur, molestias quis nisi.
-      </p>
-      <p>
-      Added February 2, 2015.
-      </p>
-      </div>
-      <hr />
-      <h5>Categories</h5>
-      <span className="label label-default">Default</span>
-      <span className="label label-default">Default</span>
-      <span className="label label-default">Default</span>
-      </li>
-      <li className="list-group-item clearfix">
-      <h4 className="pull-left">Bucket List Item One - Closed</h4>
-      <div className="btn-group pull-right">
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-remove"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-ok"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-pencil"></span>
-      </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-chevron-down"></span>
-      </button>
-      </div>
-      </li>
+        {this.renderList()}
       </ul>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    items: state.items
+  };
+}
+
+export default connect(mapStateToProps)(List);
