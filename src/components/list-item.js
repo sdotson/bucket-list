@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { expandItem } from '../actions/index';
 
-export default class ListItem extends Component {
+class ListItem extends Component {
+  determineClass() {
+    return this.props.expanded ? 'list-group-item clearfix active' : 'list-group-item clearfix';
+  }
+
   render() {
     return (
-      <li className="list-group-item clearfix {item.expanded ? 'active' : ''}" key={this.props.id}>
+      <li className={this.determineClass()} key={this.props.id}>
       <div className="clearfix">
       <h4 className="pull-left">{this.props.title}</h4>
       <div className="btn-group pull-right">
@@ -18,7 +23,7 @@ export default class ListItem extends Component {
       <span className="glyphicon glyphicon-pencil"></span>
       </button>
       <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-chevron-up"></span>
+      <span className="glyphicon glyphicon-chevron-up" onClick={() => this.props.expandItem(this.props.id) }></span>
       </button>
       </div>
       </div>
@@ -41,3 +46,5 @@ export default class ListItem extends Component {
     );
   }
 }
+
+export default connect(null, { expandItem })(ListItem);
