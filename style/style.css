@@ -2,3 +2,11 @@
 	background-color: #fff;
 	color: #337ab7;
 }
+
+.list-group-item .details {
+	display: none;
+}
+
+.list-group-item.active .details {
+	display: block;
+}

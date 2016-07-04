@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { expandItem } from '../actions/index';
 
 class ListItem extends Component {
-  determineClass() {
+  determineItemClass() {
     return this.props.expanded ? 'list-group-item clearfix active' : 'list-group-item clearfix';
+  }
+
+  determineButtonClass() {
+    return this.props.expanded ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down';
   }
 
   render() {
     return (
-      <li className={this.determineClass()} key={this.props.id}>
+      <li className={this.determineItemClass()} key={this.props.id}>
       <div className="clearfix">
       <h4 className="pull-left">{this.props.title}</h4>
       <div className="btn-group pull-right">
@@ -22,13 +26,14 @@ class ListItem extends Component {
       <button type="button" className="btn btn-default">
       <span className="glyphicon glyphicon-pencil"></span>
       </button>
-      <button type="button" className="btn btn-default">
-      <span className="glyphicon glyphicon-chevron-up" onClick={() => this.props.expandItem(this.props.id) }></span>
+      <button type="button" className="btn btn-default" onClick={() => this.props.expandItem(this.props.id) }>
+      <span className={this.determineButtonClass()}></span>
       </button>
       </div>
       </div>
-      <hr />
+      <div className="details">
       <div>
+      <hr />
       <h5>Description</h5>
       <p>
       {this.props.description}
@@ -42,6 +47,7 @@ class ListItem extends Component {
       <span className="label label-default">Default</span>
       <span className="label label-default">Default</span>
       <span className="label label-default">Default</span>
+      </div>
       </li>
     );
   }
