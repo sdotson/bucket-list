@@ -6,6 +6,7 @@ import App from './components/app';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={List} />
+    <IndexRoute component={List} done={false} />
+    <Route path="completed" component={List} done={true} />
   </Route>
 );

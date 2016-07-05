@@ -25,7 +25,7 @@ const INITIAL_STATE = [
     title: "Make Peppermint Brownies",
     description: "I have a ton of fresh peppermint and I should use it for something. Why not brownies?",
     expanded: false,
-    done: false
+    done: true
   }
 ];
 

@@ -5,7 +5,11 @@ import ListItem from './list-item';
 
 class List extends Component {
   renderList() {
-    return this.props.items.map((item) => {
+    let items = this.props.items.filter((item) => {
+      return item.done === this.props.route.done
+    });
+
+    return items.map((item) => {
       return (
         <ListItem {...item} key={item.id} />
       );
