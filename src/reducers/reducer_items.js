@@ -47,6 +47,11 @@ function item(state, action) {
         ...state,
         done: !state.done
       };
+    case 'ADD_ITEM':
+        return [
+          ...state,
+          action.payload
+        ];
     default:
       return state;
   }
@@ -59,6 +64,10 @@ export default function(state = INITIAL_STATE, action) {
         return item(i, action);
       });
     case 'COMPLETE_ITEM':
+      return state.map(i => {
+        return item(i, action);
+      });
+    case 'ADD_ITEM':
       return state.map(i => {
         return item(i, action);
       });

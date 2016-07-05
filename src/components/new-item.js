@@ -1,55 +1,65 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
 
-export default class NewItem extends Component {
+import { connect } from 'react-redux';
+import { addItem } from '../actions/index';
+
+class NewItem extends Component {
+  onSubmit(props) {
+    console.log(props);
+  }
+
   render() {
+    const { fields: { title, description, categories }, handleSubmit } = this.props;
+
     return (
       <div>
-        <form action="#">
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Title" name="title" />
+            <input type="text" className="form-control" placeholder="Title" {...title} />
           </div>
           <div className="form-group">
-            <textarea name="description" className="form-control" placeholder="Put the description of the item here."></textarea>
+            <textarea {...description} className="form-control" placeholder="Put the description of the item here."></textarea>
           </div>
           <div className="form-group row">
             <div className="col-md-4">
               <div className="checkbox">
               <label>
-              <input type="checkbox" value="" name="categories" />Travel
+              <input type="checkbox" value="" name="categories" {...categories} />Travel
               </label>
               </div>
               <div className="checkbox">
               <label>
-              <input type="checkbox" value="" name="categories" />Creativity
+              <input type="checkbox" value="" name="categories" {...categories} />Creativity
               </label>
               </div>
               <div className="checkbox">
               <label>
-              <input type="checkbox" value="" name="categories" />Health
-              </label>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" />Career
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" />Family
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" />Adventure
+              <input type="checkbox" value="" name="categories" {...categories} />Health
               </label>
               </div>
             </div>
             <div className="col-md-4">
               <div className="checkbox">
               <label>
-              <input type="checkbox" value="" name="categories" />Friendship
+              <input type="checkbox" value="" name="categories" {...categories} />Career
+              </label>
+              </div>
+              <div className="checkbox">
+              <label>
+              <input type="checkbox" value="" name="categories" {...categories} />Family
+              </label>
+              </div>
+              <div className="checkbox">
+              <label>
+              <input type="checkbox" value="" name="categories" {...categories} />Adventure
+              </label>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="checkbox">
+              <label>
+              <input type="checkbox" value="" name="categories" {...categories} />Friendship
               </label>
               </div>
             </div>
@@ -62,3 +72,8 @@ export default class NewItem extends Component {
     );
   }
 }
+
+export default reduxForm({
+  form: 'ItemsNewForm',
+  fields: ['title', 'description', 'categories']
+}, null, { addItem })(NewItem);
