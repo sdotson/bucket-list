@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import ListItem from './list-item';
 
@@ -18,9 +19,12 @@ class List extends Component {
   render() {
     console.log(this.props.items);
     return (
-      <ul className="list-group">
-        {this.renderList()}
-      </ul>
+      <div>
+        <p><Link to="items/new">Add New Item</Link></p>
+        <ul className="list-group">
+          {this.renderList()}
+        </ul>
+      </div>
     );
   }
 }
