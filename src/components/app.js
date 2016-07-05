@@ -10,7 +10,7 @@ export default class App extends Component {
         <div className="container">
     		    <div className="row">
     		        <div className="col-md-8">
-                  <List />
+                  {this.props.children}
                 </div>
             </div>
         </div>
