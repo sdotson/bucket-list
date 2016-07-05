@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
+import NavLink from './nav-link';
 
 export default class Nav extends Component {
+
   render() {
     return (
       <nav className="navbar navbar-inverse">
@@ -16,8 +20,8 @@ export default class Nav extends Component {
   	        </div>
   	        <div id="navbar" className="collapse navbar-collapse">
   	          <ul className="nav navbar-nav">
-  	            <li className="active"><a href="#">My Bucket List</a></li>
-  	            <li><a href="#">Completed Items</a></li>
+                <NavLink to="/">My Bucket List</NavLink>
+  	            <NavLink to="/completed">Completed Items</NavLink>
   	            <li><a href="#">Logout</a></li>
   	          </ul>
   	        </div>
