@@ -35,10 +35,17 @@ function item(state, action) {
       if (state.id != action.key) {
         return state;
       }
-      console.log('made it', state.expanded);
       return {
         ...state,
         expanded: !state.expanded
+      };
+    case 'COMPLETE_ITEM':
+      if (state.id != action.key) {
+        return state;
+      }
+      return {
+        ...state,
+        done: !state.done
       };
     default:
       return state;
@@ -48,6 +55,10 @@ function item(state, action) {
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case 'EXPAND_ITEM':
+      return state.map(i => {
+        return item(i, action);
+      });
+    case 'COMPLETE_ITEM':
       return state.map(i => {
         return item(i, action);
       });

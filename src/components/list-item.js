@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { expandItem } from '../actions/index';
+import { expandItem, completeItem } from '../actions/index';
 
 class ListItem extends Component {
   determineItemClass() {
@@ -20,7 +20,7 @@ class ListItem extends Component {
             <button type="button" className="btn btn-default">
               <span className="glyphicon glyphicon-remove"></span>
             </button>
-            <button type="button" className="btn btn-default">
+            <button type="button" className="btn btn-default" onClick={() => this.props.completeItem(this.props.id)}>
               <span className="glyphicon glyphicon-ok"></span>
             </button>
             <button type="button" className="btn btn-default">
@@ -53,4 +53,4 @@ class ListItem extends Component {
   }
 }
 
-export default connect(null, { expandItem })(ListItem);
+export default connect(null, { expandItem, completeItem })(ListItem);

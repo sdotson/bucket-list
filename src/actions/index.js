@@ -5,3 +5,11 @@ export function expandItem(id) {
     key: id
   }
 }
+
+export function completeItem(id) {
+  console.log('action triggered', id);
+  return {
+    type: 'COMPLETE_ITEM',
+    key: id
+  }
+}
