@@ -13,7 +13,7 @@ class ListItem extends Component {
 
   render() {
     return (
-      <li className={this.determineItemClass()} key={this.props.id}>
+      <li className={this.determineItemClass()} key={this.props.key}>
         <div className="clearfix">
           <h4 className="pull-left">{this.props.title}</h4>
           <div className="btn-group pull-right">
@@ -44,9 +44,9 @@ class ListItem extends Component {
           </div>
           <hr />
           <h5>Categories</h5>
-          <span className="label label-default">Default</span>
-          <span className="label label-default">Default</span>
-          <span className="label label-default">Default</span>
+          {this.props.categories.map((c) =>
+            <span className="label label-default">{c}</span>
+          )}
         </div>
       </li>
     );

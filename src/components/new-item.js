@@ -3,14 +3,38 @@ import { reduxForm } from 'redux-form';
 
 import { connect } from 'react-redux';
 import { addItem } from '../actions/index';
+import CheckboxGroup from './checkbox-group';
 
 class NewItem extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
   onSubmit(props) {
     console.log(props);
+    this.props.addItem(props);
+    this.context.router.push('/');
   }
 
   render() {
     const { fields: { title, description, categories }, handleSubmit } = this.props;
+
+    const categoriesArray = ['Travel', 'Creativity', 'Health', 'Career', 'Family', 'Adventure', 'Friendship'];
+
+    let theseCategories = (function() {
+      function addField(field) {
+          categories.value.push(field);
+      }
+
+      function removeField(field) {
+          categories.value.splice(categories.value.indexOf(field), 1);
+      }
+
+      return {
+        addField: addField,
+        removeField: removeField
+      };
+    })();
 
     return (
       <div>
@@ -21,48 +45,18 @@ class NewItem extends Component {
           <div className="form-group">
             <textarea {...description} className="form-control" placeholder="Put the description of the item here."></textarea>
           </div>
-          <div className="form-group row">
-            <div className="col-md-4">
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Travel
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Creativity
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Health
-              </label>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Career
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Family
-              </label>
-              </div>
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Adventure
-              </label>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="checkbox">
-              <label>
-              <input type="checkbox" value="" name="categories" {...categories} />Friendship
-              </label>
-              </div>
-            </div>
+          <div className="form-group">
+            {categoriesArray.map((category, index) =>
+               <div key={index} className="checkbox">
+                  <label>
+                    <input
+                          type="checkbox"
+                          value={category}
+                          onChange={e => e.target.checked ? theseCategories.addField(e.target.value) : theseCategories.removeField(categories.value.indexOf(e.target.value))}
+                     /> {category}
+                   </label>
+               </div>
+            )}
           </div>
           <div className="form-group">
             <input type="submit" className="btn btn-primary" />
@@ -75,5 +69,8 @@ class NewItem extends Component {
 
 export default reduxForm({
   form: 'ItemsNewForm',
-  fields: ['title', 'description', 'categories']
+  fields: ['title', 'description', 'categories'],
+  initialValues: {
+    categories: []
+  }
 }, null, { addItem })(NewItem);
