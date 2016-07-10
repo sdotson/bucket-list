@@ -11,7 +11,6 @@ class NewItem extends Component {
   };
 
   onSubmit(props) {
-    console.log(props);
     this.props.addItem(props);
     this.context.router.push('/');
   }
@@ -35,7 +34,7 @@ class NewItem extends Component {
         removeField: removeField
       };
     })();
-
+    console.log('categories',categories.value);
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -49,11 +48,24 @@ class NewItem extends Component {
             {categoriesArray.map((category, index) =>
                <div key={index} className="checkbox">
                   <label>
-                    <input
-                          type="checkbox"
-                          value={category}
-                          onChange={e => e.target.checked ? theseCategories.addField(e.target.value) : theseCategories.removeField(categories.value.indexOf(e.target.value))}
-                     /> {category}
+                  <input
+                    type="checkbox"
+                    checked={categories.value.indexOf(category) >= 0}
+                    onChange={event => {
+                      const index = categories.value.indexOf(category);
+                      if(index < 0) { // wasn't selected
+                        if(event.target.checked) { // was checked
+                          categories.onChange(categories.value.concat(category));
+                        }
+                      } else {
+                        if(event.target.checked) { // was unchecked
+                          const copy = [...categories.value]; // make copy to not mutate value
+                          copy.splice(index, 1); // remove item at index
+                          categories.onChange(copy);
+                        }
+                      }
+                    }}/>
+                    {category}
                    </label>
                </div>
             )}
