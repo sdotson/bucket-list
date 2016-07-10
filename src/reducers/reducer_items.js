@@ -70,7 +70,8 @@ export default function(state = INITIAL_STATE, action) {
       let newItem = {
         ...action.payload,
         done: false,
-        expanded: false
+        expanded: false,
+        added: new Date()
       };
       return [...state, newItem];
     default:

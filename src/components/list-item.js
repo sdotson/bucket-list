@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { expandItem, completeItem } from '../actions/index';
 
+import moment from 'moment';
+
 class ListItem extends Component {
   determineItemClass() {
     return this.props.expanded ? 'list-group-item clearfix active' : 'list-group-item clearfix';
@@ -39,7 +41,7 @@ class ListItem extends Component {
             {this.props.description}
             </p>
             <p>
-            Added February 2, 2015.
+            Added {moment(this.props.added).format('dddd, MMMM Do, YYYY')}.
             </p>
           </div>
           <hr />
