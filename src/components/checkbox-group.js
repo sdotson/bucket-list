@@ -4,32 +4,37 @@ import { change } from 'redux-form';
 class CheckboxGroup extends Component {
 
   render() {
-    const { options } = this.props;
-    function addField(field) {
-      if (options.value.indexOf(field) === -1) {
-        options.value.push(field);
-      }
-    }
-
-    function removeField(field) {
-      if (options.value.indexOf(field) != -1) {
-        options.value.splice(options.value.indexOf(field), 1);
-      }
-    }
+    const { options, fieldName } = this.props;
+    console.log(fieldName);
     return (
       <div>
-        {options.map((category, index) =>
-           <div key={index} className="checkbox">
-              <label>
-                <input
-                      type="checkbox"
-                      value={category}
-                      onChange={e => e.target.checked ? addField(e.target.value) : removeField(options.value.indexOf(e.target.value))}
-                 /> {category}
-               </label>
-           </div>
-        )}
-      </div>
+      {options.map((category, index) =>
+         <div key={index} className="checkbox">
+         {fieldName.value.indexOf(category)}
+          <label>
+          <input
+            type="checkbox"
+            checked={fieldName.value.indexOf(category) >= 0}
+            onChange={event => {
+              const index = fieldName.value.indexOf(category);
+              console.log('checked', event.target.checked);
+              if (index < 0) { // wasn't selected
+                if (event.target.checked) { // was checked
+                  fieldName.onChange(fieldName.value.concat(category));
+                }
+              } else {
+                if (!event.target.checked) { // was unchecked
+                  const copy = [...fieldName.value]; // make copy to not mutate value
+                  copy.splice(index, 1); // remove item at index
+                  fieldName.onChange(copy);
+                }
+              }
+            }} />
+            {category}
+           </label>
+         </div>
+       )}
+     </div>
     )
   }
 }
