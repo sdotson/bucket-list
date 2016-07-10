@@ -10,7 +10,6 @@ class CheckboxGroup extends Component {
       <div>
       {options.map((category, index) =>
          <div key={index} className="checkbox">
-         {fieldName.value.indexOf(category)}
           <label>
           <input
             type="checkbox"
