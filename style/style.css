@@ -10,3 +10,7 @@
 .list-group-item.active .details {
 	display: block;
 }
+
+.label {
+	margin-right: 5px;
+}
