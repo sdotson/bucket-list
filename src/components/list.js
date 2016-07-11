@@ -7,7 +7,7 @@ import ListItem from './list-item';
 class List extends Component {
   renderList() {
     let items = this.props.items.filter((item) => {
-      return item.done === this.props.route.done
+      return item.done === this.props.done
     });
 
     return items.map((item) => {
@@ -19,12 +19,9 @@ class List extends Component {
   render() {
     console.log(this.props.items);
     return (
-      <div>
-        <p><Link to="items/new">Add New Item</Link></p>
-        <ul className="list-group">
-          {this.renderList()}
-        </ul>
-      </div>
+      <ul className="list-group">
+        {this.renderList()}
+      </ul>
     );
   }
 }
