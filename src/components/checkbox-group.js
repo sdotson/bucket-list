@@ -5,7 +5,6 @@ class CheckboxGroup extends Component {
 
   render() {
     const { options, fieldName } = this.props;
-    console.log(fieldName);
     return (
       <div>
       {options.map((category, index) =>
