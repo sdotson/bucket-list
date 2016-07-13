@@ -24,15 +24,15 @@ class NewItem extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="form-group">
-            <label for="title">Title</label>
+            <label>Title</label>
             <input type="text" className="form-control" {...title} />
           </div>
           <div className="form-group">
-            <label for="description">Description</label>
+            <label>Description</label>
             <textarea {...description} className="form-control"></textarea>
           </div>
           <div className="form-group">
-            <label for="categories">Categories</label>
+            <label>Categories</label>
             <CheckboxGroup options={categoriesArray} fieldName={categories} />
           </div>
           <div className="form-group">
