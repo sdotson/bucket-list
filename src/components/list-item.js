@@ -47,7 +47,7 @@ class ListItem extends Component {
           <hr />
           <h5>Categories</h5>
           {this.props.categories.map((c) =>
-            <span className="label label-default">{c}</span>
+            <span className="label label-default" key={c}>{c}</span>
           )}
         </div>
       </li>
