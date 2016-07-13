@@ -7,7 +7,10 @@ import List from './list';
 export default class ListCompleted extends Component {
   render() {
     return (
-      <List done={true} />
+      <div>
+        <h2>Completed Items</h2>
+        <List done={true} />
+      </div>
     );
   }
 }

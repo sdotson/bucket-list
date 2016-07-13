@@ -8,7 +8,8 @@ export default class ListMain extends Component {
   render() {
     return (
       <div>
-        <p><Link to="items/new">Add New Item</Link></p>
+        <h2>My Bucket List</h2>
+        <p><Link to="items/new"><span className="glyphicon glyphicon-plus"></span> Add New Item</Link></p>
         <List done={false} />
       </div>
     );

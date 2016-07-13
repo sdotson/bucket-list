@@ -24,16 +24,19 @@ class NewItem extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Title" {...title} />
+            <label for="title">Title</label>
+            <input type="text" className="form-control" {...title} />
           </div>
           <div className="form-group">
-            <textarea {...description} className="form-control" placeholder="Put the description of the item here."></textarea>
+            <label for="description">Description</label>
+            <textarea {...description} className="form-control"></textarea>
           </div>
           <div className="form-group">
+            <label for="categories">Categories</label>
             <CheckboxGroup options={categoriesArray} fieldName={categories} />
           </div>
           <div className="form-group">
-            <input type="submit" className="btn btn-primary" />
+            <input type="submit" className="btn btn-primary" value="Add Item" />
           </div>
         </form>
       </div>
