@@ -8,8 +8,8 @@ import NewItem from './components/new-item';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={ListMain} done={false} />
-    <Route path="completed" component={ListCompleted} done={true} />
+    <IndexRoute component={ListMain} filter={{done: false}} />
+    <Route path="completed" component={ListCompleted} filter={{done: true}} />
     <Route path="items/new" component={NewItem} />
   </Route>
 );

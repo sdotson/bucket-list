@@ -9,7 +9,7 @@ export default class ListCompleted extends Component {
     return (
       <div>
         <h2>Completed Items</h2>
-        <List done={true} />
+        <List filter={this.props.route.filter} />
       </div>
     );
   }
