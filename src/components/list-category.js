@@ -10,6 +10,7 @@ export default class ListCategory extends Component {
     return (
       <div>
         <h2>{this.props.params.category} Category</h2>
+        <p><Link to="/">Return to main bucket list</Link></p> 
         <p><Link to="items/new"><span className="glyphicon glyphicon-plus"></span> Add New Item</Link></p>
         <List filter={{...this.props.route.filter, categories: [this.props.params.category]}} />
       </div>
