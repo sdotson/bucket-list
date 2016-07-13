@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const INITIAL_STATE = [
   {
     id:1,
@@ -74,6 +76,9 @@ export default function(state = INITIAL_STATE, action) {
         added: new Date()
       };
       return [...state, newItem];
+    case 'DELETE_ITEM':
+      console.log(item.id, action.key);
+      return state.filter(item => item.id !== action.key);
     default:
       return state;
   }

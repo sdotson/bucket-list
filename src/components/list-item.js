@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { expandItem, completeItem } from '../actions/index';
+import { expandItem, completeItem, deleteItem } from '../actions/index';
 
 import moment from 'moment';
 
@@ -19,7 +19,7 @@ class ListItem extends Component {
         <div className="clearfix">
           <h4 className="pull-left">{this.props.title}</h4>
           <div className="btn-group pull-right">
-            <button type="button" className="btn btn-default">
+            <button type="button" className="btn btn-default" onClick={() => this.props.deleteItem(this.props.id)}>
               <span className="glyphicon glyphicon-remove"></span>
             </button>
             <button type="button" className="btn btn-default" onClick={() => this.props.completeItem(this.props.id)}>
@@ -55,4 +55,4 @@ class ListItem extends Component {
   }
 }
 
-export default connect(null, { expandItem, completeItem })(ListItem);
+export default connect(null, { expandItem, completeItem, deleteItem })(ListItem);

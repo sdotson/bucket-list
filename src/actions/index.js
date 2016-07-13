@@ -21,3 +21,11 @@ export function addItem(payload) {
     payload: payload
   };
 }
+
+export function deleteItem(key) {
+  console.log('key', key);
+  return {
+    type: 'DELETE_ITEM',
+    key
+  };
+}
