@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { expandItem, completeItem, deleteItem } from '../actions/index';
 
@@ -47,7 +48,7 @@ class ListItem extends Component {
           <hr />
           <h5>Categories</h5>
           {this.props.categories.map((c) =>
-            <span className="label label-default" key={c}>{c}</span>
+            <Link to={'/categories/' + c} className="label label-default" key={c}>{c}</Link>
           )}
         </div>
       </li>
