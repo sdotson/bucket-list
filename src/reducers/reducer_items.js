@@ -28,8 +28,8 @@ function item(state, action) {
 export default function(state = [], action) {
   switch(action.type) {
     case 'FETCH_ITEMS':
-      console.log('FETCH_ITEMS', action.payload.data);
-      return action.payload.data;
+      console.log('FETCH_ITEMS', action.payload);
+      return action.payload.data || state;
     case 'EXPAND_ITEM':
       return state.map(i => {
         return item(i, action);
