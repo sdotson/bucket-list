@@ -14,7 +14,7 @@ class NewItem extends Component {
 
   onSubmit(props) {
     this.props.createItem(props);
-    // this.context.router.push('/');
+    this.context.router.push('/');
   }
 
   render() {

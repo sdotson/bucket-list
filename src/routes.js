@@ -15,8 +15,8 @@ export default (
     <IndexRoute component={ListMain} />
     <Route path="/login" component={LogIn} />
     <Route path="my-bucket-list" component={ListMain} />
-    <Route path="completed" component={ListCompleted} filter={{done: true}} />
+    <Route path="completed" component={ListCompleted} />
     <Route path="items/new" component={NewItem} />
-    <Route path="categories/:category" component={ListCategory} filter={{done:false}} />
+    <Route path="categories/:category" component={ListCategory} />
   </Route>
 );

@@ -38,17 +38,11 @@ export default function(state = [], action) {
       return state.map(i => {
         return item(i, action);
       });
-    case 'ADD_ITEM':
-      let newItem = {
-        ...action.payload,
-        done: false,
-        expanded: false,
-        added: new Date()
-      };
+    case 'CREATE_ITEM':
+      let newItem = action.payload.data.item;
       return [...state, newItem];
     case 'DELETE_ITEM':
-      console.log(item.id, action.key);
-      return state.filter(item => item.id !== action.key);
+      return state.filter(item => item._id !== action.payload.data.item._id);
     default:
       return state;
   }

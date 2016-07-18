@@ -28,7 +28,7 @@ class List extends Component {
     console.log('items', items);
     return items.map((item) => {
       return (
-        <ListItem {...item} key={item.id} />
+        <ListItem {...item} key={item._id} />
       );
     });
   }

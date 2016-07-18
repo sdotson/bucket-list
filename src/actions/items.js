@@ -160,11 +160,11 @@ export function resetActiveItem() {
   }
 };
 
-export function deleteItem(id, tokenFromStorage) {
+export function deleteItem(id) {
   const request = axios({
     method: 'delete',
     url: `${ROOT_URL}/items/${id}`,
-   headers: {'Authorization': `Bearer ${tokenFromStorage}`}
+    headers: {'Authorization': sessionStorage.getItem('jwtToken')}
   });
   return {
     type: DELETE_ITEM,
