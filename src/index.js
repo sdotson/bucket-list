@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
+import thunkMiddleware from 'redux-thunk'
 
 import routes from './routes';
 import App from './components/app';
@@ -16,7 +17,7 @@ state
   list-items: all list items
 }
 
-
+http://192.241.148.238:3000/
 
 3 routes
 / all list items
@@ -25,7 +26,7 @@ state
 
 */
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
