@@ -12,9 +12,9 @@ import {requireAuthentication} from './components/authenticated-component';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={requireAuthentication(ListMain)} />
+    <IndexRoute component={requireAuthentication()} />
     <Route path="/login" component={LogIn} />
-    <Route component={requireAuthentication(ListMain)}>
+    <Route component={requireAuthentication()}>
       <Route path="my-bucket-list" component={ListMain} />
       <Route path="completed" component={ListCompleted} />
       <Route path="items/new" component={NewItem} />

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {pushState} from 'react-router';
 
-export function requireAuthentication(Component) {
+export function requireAuthentication() {
 
     class AuthenticatedComponent extends Component {
       static contextTypes = {
@@ -28,7 +28,7 @@ export function requireAuthentication(Component) {
             return (
                 <div>
                     {this.props.isAuthenticated === 'authenticated'
-                        ? <Component {...this.props}/>
+                        ? this.props.children
                         : null
                     }
                 </div>
