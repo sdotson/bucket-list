@@ -53,6 +53,7 @@ export function resetUser() {
 }
 
 export function signInUser(formValues) {
+  console.log('formValues', formValues);
   const request = axios.post(`${ROOT_URL}/authenticate`, formValues);
 
   return {

@@ -9,7 +9,7 @@ class SignInForm extends Component {
   componentWillMount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
     //always reset that global state back to null when you REMOUNT
-     this.props.resetMe();
+    //  this.props.resetMe();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +34,7 @@ class SignInForm extends Component {
 
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
           <label className="control-label">Email*</label>
-          <input  placeholder="@raja" type="text" className="form-control" {...email} />
+          <input  placeholder="user@email.com" type="text" className="form-control" {...email} />
           <div className="help-block">
             {email.touched ? email.error : ''}
           </div>

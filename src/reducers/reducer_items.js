@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import { FETCH_ITEMS } from '../actions/items';
+
 const INITIAL_STATE = [
   {
     id:1,
@@ -60,6 +62,9 @@ function item(state, action) {
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
+    case 'FETCH_ITEMS':
+      console.log('FETCH_ITEMS', action.payload.data);
+      return action.payload.data;
     case 'EXPAND_ITEM':
       return state.map(i => {
         return item(i, action);

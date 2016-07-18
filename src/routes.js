@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import List from './components/list';
 import ListMain from './components/list-main';
 import ListCompleted from './components/list-completed';
 import ListCategory from './components/list-category';
@@ -11,7 +12,7 @@ import SignIn from './components/sign-in';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={ListMain} filter={{done: false}} />
+    <IndexRoute component={List} filter={{done: false}} />
     <Route path="/signin" component={SignIn} />
     <Route path="my-bucket-list" component={ListMain} filter={{done: false}} />
     <Route path="completed" component={ListCompleted} filter={{done: true}} />

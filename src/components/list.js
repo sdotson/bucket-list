@@ -3,19 +3,29 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
+import { fetchItems, fetchItemsSuccess, fetchItemsFailure } from '../actions/items';
+
 import ListItem from './list-item';
 
-// should filter by route prop or state filter
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    items: state.items
+    fetchItems: () => {
+      dispatch(fetchItems()).then((response) => {
+        console.log('response', response);
+            !response.error ? dispatch(fetchItemsSuccess(response.payload)) : dispatch(fetchItemsFailure(response.payload));
+          });
+    }
   }
 }
 
 class List extends Component {
-  renderList() {
-    let items = _.filter(this.props.items, this.props.route ? this.props.route.filter : this.props.filter);
+  componentWillMount() {
+    this.props.fetchItems();
+  }
 
+  renderList() {
+    let items = this.props.items;
+    console.log('items', items);
     return items.map((item) => {
       return (
         <ListItem {...item} key={item.id} />
@@ -31,4 +41,11 @@ class List extends Component {
   }
 }
 
-export default connect(mapStateToProps)(List);
+function mapStateToProps(state) {
+  console.log("state", state);
+  return {
+    items: state.items
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

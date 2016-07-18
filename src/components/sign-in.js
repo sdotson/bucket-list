@@ -30,6 +30,7 @@ const validateAndSignInUser = (values, dispatch) => {
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
           dispatch(signInUserFailure(response.payload));
+          console.log('data',data);
            reject(data); //this is for redux-form itself
          } else {
            console.log('made it! Logged in (hopefully...)');
@@ -49,17 +50,13 @@ const validateAndSignInUser = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   signInUser: validateAndSignInUser,
-   resetMe: () =>{
-    //sign up is not reused, so we dont need to resetUserFields
-    //in our case, it will remove authenticated users
-     // dispatch(resetUserFields());
-    }
+   signInUser: validateAndSignInUser
   }
 }
 
 
 function mapStateToProps(state, ownProps) {
+  console.log('state', state);
   return {
     user: state.user
   };

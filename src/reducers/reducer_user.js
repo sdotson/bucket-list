@@ -52,6 +52,7 @@ export default function(state = INITIAL_STATE, action) {
 
 
     case SIGNIN_USER:// sign in user,  set loading = true and status = signin
+    console.log(action.payload);
     return { ...state, user: null, status:'signin', error:null, loading: true};
     case SIGNIN_USER_SUCCESS://return authenticated user,  make loading = false and status = authenticated
     console.log(action);

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
-import thunkMiddleware from 'redux-thunk'
+import promise from 'redux-promise';
 
 import routes from './routes';
 import App from './components/app';
@@ -26,7 +26,7 @@ http://192.241.148.238:3000/
 
 */
 
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
