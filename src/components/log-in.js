@@ -41,6 +41,7 @@ const validateAndLogInUser = (values, dispatch) => {
           //let other components know that we got user and things are fine by updating the redux` state
           dispatch(signInUserSuccess(response.payload));
           resolve();//this is for redux-form itself
+          
         }
       });
   });

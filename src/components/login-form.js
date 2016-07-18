@@ -13,14 +13,15 @@ class LoginForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.user.status === 'authenticated' && nextProps.user.user && !nextProps.user.error) {
+    console.log('nextProps', nextProps);
+    if(nextProps.user.authenticated === true) {
       this.context.router.push('/');
     }
 
     //error
     //Throw error if it was not already thrown (check this.props.user.error to see if alert was already shown)
     //If u dont check this.props.user.error, u may throw error multiple times due to redux-form's validation errors
-    if(nextProps.user.status === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
+    if(nextProps.user.authenticated === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
       alert(nextProps.user.error.message);
     }
   }

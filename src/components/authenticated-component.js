@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {pushState} from 'react-router';
 
-export function requireAuthentication() {
 
     class AuthenticatedComponent extends Component {
       static contextTypes = {
@@ -10,6 +9,7 @@ export function requireAuthentication() {
       };
 
         componentWillMount() {
+          console.log('in willMount');
             this.checkAuth();
         }
 
@@ -18,16 +18,18 @@ export function requireAuthentication() {
         }
 
         checkAuth() {
-            if (this.props.isAuthenticated !== 'authenticated') {
+          console.log('this.props.authenticated',this.props.authenticated);
+            if (this.props.authenticated !== true) {
                 let redirectAfterLogin = this.props.location.pathname;
                 this.context.router.push('/login');
             }
         }
 
         render() {
+          console.log('in the render()');
             return (
                 <div>
-                    {this.props.isAuthenticated === 'authenticated'
+                    {this.props.authenticated === true
                         ? this.props.children
                         : null
                     }
@@ -38,9 +40,7 @@ export function requireAuthentication() {
     }
 
     const mapStateToProps = (state) => ({
-        status: state.user.status,
+        authenticated: state.user.authenticated,
     });
 
-    return connect(mapStateToProps)(AuthenticatedComponent);
-
-}
+    export default connect(mapStateToProps)(AuthenticatedComponent);
