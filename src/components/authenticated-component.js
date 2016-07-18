@@ -9,7 +9,6 @@ import {pushState} from 'react-router';
       };
 
         componentWillMount() {
-          console.log('in willMount');
             this.checkAuth();
         }
 
@@ -26,7 +25,6 @@ import {pushState} from 'react-router';
         }
 
         render() {
-          console.log('in the render()');
             return (
                 <div>
                     {this.props.authenticated === true

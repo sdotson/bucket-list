@@ -18,6 +18,7 @@ export default (
       <Route path="my-bucket-list" component={ListMain} />
       <Route path="completed" component={ListCompleted} />
       <Route path="items/new" component={NewItem} />
+      <Route path="items/:item_id/edit" component={EditItem} />
       <Route path="categories/:category" component={ListCategory} />
     </Route>
   </Route>
