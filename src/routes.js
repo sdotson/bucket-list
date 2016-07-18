@@ -8,13 +8,13 @@ import ListCategory from './components/list-category';
 import App from './components/app';
 import NewItem from './components/new-item';
 import auth from './auth';
-import SignIn from './components/sign-in';
+import LogIn from './components/log-in';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={List} filter={{done: false}} />
-    <Route path="/signin" component={SignIn} />
-    <Route path="my-bucket-list" component={ListMain} filter={{done: false}} />
+    <IndexRoute component={ListMain} />
+    <Route path="/login" component={LogIn} />
+    <Route path="my-bucket-list" component={ListMain} />
     <Route path="completed" component={ListCompleted} filter={{done: true}} />
     <Route path="items/new" component={NewItem} />
     <Route path="categories/:category" component={ListCategory} filter={{done:false}} />

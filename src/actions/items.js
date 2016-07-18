@@ -89,13 +89,13 @@ export function resetItemFields() {
 };
 
 
-export function createItem(props, tokenFromStorage) {
+export function createItem(props) {
   //const request = axios.item(`${ROOT_URL}/items`, props);
   const request = axios({
     method: 'post',
     data: props,
     url: `${ROOT_URL}/items`,
-   headers: {'Authorization': `Bearer ${tokenFromStorage}`}
+    headers: {'Authorization': sessionStorage.getItem('jwtToken')}
   });
 
   return {

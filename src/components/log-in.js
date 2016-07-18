@@ -1,4 +1,4 @@
-import SignInForm from './sign-in-form.js';
+import LoginForm from './login-form.js';
 import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
 import { reduxForm } from 'redux-form';
 
@@ -19,7 +19,7 @@ function validate(values) {
 }
 
 //For any field errors upon submission (i.e. not instant check)
-const validateAndSignInUser = (values, dispatch) => {
+const validateAndLogInUser = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
 
@@ -50,7 +50,7 @@ const validateAndSignInUser = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   signInUser: validateAndSignInUser
+   signInUser: validateAndLogInUser
   }
 }
 
@@ -66,9 +66,9 @@ function mapStateToProps(state, ownProps) {
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
-  form: 'SignInForm',
+  form: 'LoginForm',
   fields: ['email', 'password'],
   null,
   null,
   validate
-}, mapStateToProps, mapDispatchToProps)(SignInForm);
+}, mapStateToProps, mapDispatchToProps)(LoginForm);

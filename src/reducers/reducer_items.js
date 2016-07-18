@@ -2,41 +2,6 @@ import _ from 'lodash';
 
 import { FETCH_ITEMS } from '../actions/items';
 
-const INITIAL_STATE = [
-  {
-    id:1,
-    title: "Eat more oranges",
-    description: "Oranges are good for you and for this reason I should eat a ton of oranges. It also prevents scurvy.",
-    expanded: false,
-    categories: ['Adventure','Travel'],
-    done: false
-  },
-  {
-    id:2,
-    title: "Go to Angkor Wat",
-    description: "Angkor Wat is possibly the coolest ancient ruin on the face of the planet. It is located in Cambodia.",
-    expanded: false,
-    categories: ['Adventure','Travel'],
-    done: false
-  },
-  {
-    id:3,
-    title: "Build a table",
-    description: "This task would require going to a class and finding some way to get the tools and lumber.",
-    expanded: false,
-    categories: ['Adventure','Travel'],
-    done: false
-  },
-  {
-    id:4,
-    title: "Make Peppermint Brownies",
-    description: "I have a ton of fresh peppermint and I should use it for something. Why not brownies?",
-    expanded: false,
-    categories: ['Adventure','Travel'],
-    done: true
-  }
-];
-
 function item(state, action) {
   switch(action.type) {
     case 'EXPAND_ITEM':
@@ -60,7 +25,7 @@ function item(state, action) {
   }
 }
 
-export default function(state = INITIAL_STATE, action) {
+export default function(state = [], action) {
   switch(action.type) {
     case 'FETCH_ITEMS':
       console.log('FETCH_ITEMS', action.payload.data);

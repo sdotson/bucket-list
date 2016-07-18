@@ -5,14 +5,16 @@ import { connect } from 'react-redux';
 import { addItem } from '../actions/index';
 import CheckboxGroup from './checkbox-group';
 
+import { createItem } from '../actions/items';
+
 class NewItem extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
 
   onSubmit(props) {
-    this.props.addItem(props);
-    this.context.router.push('/');
+    this.props.createItem(props);
+    // this.context.router.push('/');
   }
 
   render() {
@@ -50,4 +52,4 @@ export default reduxForm({
   initialValues: {
     categories: []
   }
-}, null, { addItem })(NewItem);
+}, null, { createItem })(NewItem);

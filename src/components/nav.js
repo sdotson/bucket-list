@@ -22,7 +22,7 @@ export default class Nav extends Component {
   	          <ul className="nav navbar-nav">
                 <NavLink to="/">My Bucket List</NavLink>
   	            <NavLink to="/completed">Completed Items</NavLink>
-  	            <li><a href="#">Logout</a></li>
+  	            <NavLink to="/login">Login</NavLink>
   	          </ul>
   	        </div>
   	      </div>

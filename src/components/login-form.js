@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class SignInForm extends Component {
+class LoginForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -62,4 +62,4 @@ class SignInForm extends Component {
   }
 }
 
-export default SignInForm;
+export default LoginForm;
