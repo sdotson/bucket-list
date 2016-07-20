@@ -24,7 +24,7 @@ class List extends Component {
   }
 
   renderList() {
-    let items = this.props.items;
+    let items = _.filter(this.props.items, this.props.filter);
 
     return items.map((item) => {
       return (
@@ -42,7 +42,6 @@ class List extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
     items: state.items,
     filter: state.visibilityFilter
