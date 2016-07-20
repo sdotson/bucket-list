@@ -16,7 +16,11 @@ import {
 // 5. 'authenticated'(after signin)
 // 6. 'logout' (after logout)
 
-const INITIAL_STATE = {user: null, authenticated: false, error:null, loading: false};
+let token = sessionStorage.getItem('jwtToken');
+
+let authenticated = token ? true : false;
+
+const INITIAL_STATE = {user: null, authenticated: authenticated, error:null, loading: false};
 
 export default function(state = INITIAL_STATE, action) {
   let error;

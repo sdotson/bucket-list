@@ -13,12 +13,12 @@ function item(state, action) {
         expanded: !state.expanded
       };
     case 'COMPLETE_ITEM':
-      if (state._id != action.key) {
+      if (state._id != action.payload.data._id) {
         return state;
       }
       return {
         ...state,
-        done: !state.done
+        completed: !state.completed
       };
     case 'EDIT_ITEM':
       console.log('EDIT_ITEM response',state, action);

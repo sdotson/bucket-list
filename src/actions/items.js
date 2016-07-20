@@ -21,6 +21,8 @@ export const RESET_ACTIVE_ITEM = 'RESET_ACTIVE_ITEM';
 // Edit item
 export const EDIT_ITEM = 'EDIT_ITEM';
 
+export const COMPLETE_ITEM = 'COMPLETE_ITEM';
+
 //Delete item
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
@@ -126,6 +128,20 @@ export function editItem(props) {
 
   return {
     type: EDIT_ITEM,
+    payload: request
+  };
+}
+
+export function completeItem(props) {
+  const request = axios({
+    method: 'put',
+    data: { _id: props._id ,completed: !props.completed },
+    url: `${ROOT_URL}/items/${props._id}`,
+    headers: {'Authorization': sessionStorage.getItem('jwtToken')}
+  });
+
+  return {
+    type: COMPLETE_ITEM,
     payload: request
   };
 }

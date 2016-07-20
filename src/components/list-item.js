@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { expandItem, completeItem } from '../actions/index';
-import { deleteItem } from '../actions/items';
+import { expandItem } from '../actions/index';
+import { deleteItem, editItem, completeItem } from '../actions/items';
 
 import moment from 'moment';
 
@@ -25,7 +25,7 @@ class ListItem extends Component {
             <button type="button" className="btn btn-default" onClick={() => this.props.deleteItem(this.props._id)}>
               <span className="glyphicon glyphicon-remove"></span>
             </button>
-            <button type="button" className="btn btn-default" onClick={() => this.props.completeItem(this.props.id)}>
+            <button type="button" className="btn btn-default" onClick={() => this.props.completeItem(this.props)}>
               <span className="glyphicon glyphicon-ok"></span>
             </button>
             <button type="button" className="btn btn-default">
