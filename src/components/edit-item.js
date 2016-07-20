@@ -13,7 +13,6 @@ class EditItem extends Component {
   };
 
   componentWillMount() {
-    console.log('props',this.props.params.item_id);
     this.props.fetchItem(this.props.params.item_id);
   }
 
@@ -24,20 +23,18 @@ class EditItem extends Component {
 
   render() {
     const { fields: { title, description, categories }, selectedItem, handleSubmit } = this.props;
-    console.log(selectedItem);
     const categoriesArray = ['Travel', 'Creativity', 'Health', 'Career', 'Family', 'Adventure', 'Friendship'];
 
     return (
       <div>
-
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="form-group">
             <label>Title</label>
-            <input type="text" className="form-control" {...title} value={selectedItem.title} />
+            <input type="text" className="form-control" {...title} />
           </div>
           <div className="form-group">
             <label>Description</label>
-            <textarea {...description} className="form-control" value={selectedItem.description}></textarea>
+            <textarea {...description} className="form-control"></textarea>
           </div>
           <div className="form-group">
             <label>Categories</label>
@@ -68,7 +65,6 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    selectedItem: state.selectedItem,
     initialValues: state.selectedItem
   };
 }

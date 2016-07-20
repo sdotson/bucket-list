@@ -3,7 +3,7 @@ import { change } from 'redux-form';
 
 class CheckboxGroup extends Component {
   render() {
-    const { options, fieldName, initialValues } = this.props;
+    const { options, fieldName } = this.props;
 
     return (
       <div>
