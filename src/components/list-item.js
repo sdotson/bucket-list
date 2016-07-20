@@ -28,7 +28,7 @@ class ListItem extends Component {
               <span className="glyphicon glyphicon-ok"></span>
             </button>
             <button type="button" className="btn btn-default">
-              <span className="glyphicon glyphicon-pencil"></span>
+              <Link to={"/items/" + this.props._id + "/edit"}><span className="glyphicon glyphicon-pencil"></span></Link>
             </button>
             <button type="button" className="btn btn-default" onClick={() => this.props.expandItem(this.props.id) }>
               <span className={this.determineButtonClass()}></span>

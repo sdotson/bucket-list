@@ -12,12 +12,6 @@ export const CREATE_ITEM_SUCCESS = 'CREATE_ITEM_SUCCESS';
 export const CREATE_ITEM_FAILURE = 'CREATE_ITEM_FAILURE';
 export const RESET_NEW_ITEM = 'RESET_NEW_ITEM';
 
-//Validate item fields like Title, Categries on the server
-export const VALIDATE_ITEM_FIELDS = 'VALIDATE_ITEM_FIELDS';
-export const VALIDATE_ITEM_FIELDS_SUCCESS = 'VALIDATE_ITEM_FIELDS_SUCCESS';
-export const VALIDATE_ITEM_FIELDS_FAILURE = 'VALIDATE_ITEM_FIELDS_FAILURE';
-export const RESET_ITEM_FIELDS = 'RESET_ITEM_FIELDS';
-
 //Fetch item
 export const FETCH_ITEM = 'FETCH_ITEM';
 export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS';
@@ -59,36 +53,6 @@ export function fetchItemsFailure(error) {
   };
 }
 
-export function validateItemFields(props) {
-  //note: we cant have /items/validateFields because it'll match /items/:id path!
-  const request = axios.item(`${ROOT_URL}/items/validate/fields`, props);
-
-  return {
-    type: VALIDATE_ITEM_FIELDS,
-    payload: request
-  };
-}
-
-export function validateItemFieldsSuccess() {
-  return {
-    type: VALIDATE_ITEM_FIELDS_SUCCESS
-  };
-}
-
-export function validateItemFieldsFailure(error) {
-  return {
-    type: VALIDATE_ITEM_FIELDS_FAILURE,
-    payload: error
-  };
-}
-
-export function resetItemFields() {
-  return {
-    type: RESET_ITEM_FIELDS
-  }
-};
-
-
 export function createItem(props) {
   //const request = axios.item(`${ROOT_URL}/items`, props);
   const request = axios({
@@ -118,20 +82,13 @@ export function createItemFailure(error) {
   };
 }
 
-export function resetNewItem() {
-  return {
-    type: RESET_NEW_ITEM
-  }
-};
-
-export function resetDeletedItem() {
-  return {
-    type: RESET_DELETED_ITEM
-  }
-};
-
 export function fetchItem(id) {
-  const request = axios.get(`${ROOT_URL}/items/${id}`);
+  console.log('inside action', id);
+  const request = axios({
+    method: 'get',
+    url: `${ROOT_URL}/items/${id}`,
+    headers: {'Authorization': sessionStorage.getItem('jwtToken')}
+  });
 
   return {
     type: FETCH_ITEM,
@@ -153,12 +110,6 @@ export function fetchItemFailure(error) {
     payload: error
   };
 }
-
-export function resetActiveItem() {
-  return {
-    type: RESET_ACTIVE_ITEM
-  }
-};
 
 export function deleteItem(id) {
   const request = axios({

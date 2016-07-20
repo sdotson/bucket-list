@@ -35,7 +35,7 @@ class LoginForm extends Component {
 
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
           <label className="control-label">Email*</label>
-          <input  placeholder="user@email.com" type="text" className="form-control" {...email} />
+          <input value="user1@email.com" placeholder="user@email.com" type="text" className="form-control" {...email} />
           <div className="help-block">
             {email.touched ? email.error : ''}
           </div>
@@ -47,7 +47,7 @@ class LoginForm extends Component {
 
         <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
           <label className="control-label">Password*</label>
-          <input type="password" className="form-control" {...password} />
+          <input value="password" type="password" className="form-control" {...password} />
           <div className="help-block">
             {password.touched ? password.error : ''}
           </div>

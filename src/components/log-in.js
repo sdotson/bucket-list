@@ -41,7 +41,7 @@ const validateAndLogInUser = (values, dispatch) => {
           //let other components know that we got user and things are fine by updating the redux` state
           dispatch(signInUserSuccess(response.payload));
           resolve();//this is for redux-form itself
-          
+
         }
       });
   });
@@ -69,7 +69,10 @@ function mapStateToProps(state, ownProps) {
 export default reduxForm({
   form: 'LoginForm',
   fields: ['email', 'password'],
-  null,
+  initialValues: {
+    email: 'user1@email.com',
+    password: 'password'
+  },
   null,
   validate
 }, mapStateToProps, mapDispatchToProps)(LoginForm);

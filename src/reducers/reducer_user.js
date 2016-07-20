@@ -1,10 +1,8 @@
 
 import {
-  VALIDATE_EMAIL, VALIDATE_EMAIL_SUCCESS, VALIDATE_EMAIL_FAILURE,
-  ME_FROM_TOKEN, ME_FROM_TOKEN_SUCCESS, ME_FROM_TOKEN_FAILURE, RESET_TOKEN,
-	SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
+	SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE,
 	SIGNIN_USER, SIGNIN_USER_SUCCESS,  SIGNIN_USER_FAILURE,
-	LOGOUT_USER, UPDATE_USER_EMAIL
+	LOGOUT_USER
 } from '../actions/users';
 
 
@@ -24,56 +22,30 @@ export default function(state = INITIAL_STATE, action) {
   let error;
   switch(action.type) {
 
-    case VALIDATE_EMAIL://check email verification token
-    return { ...state, user: null, authenticated:'validate_email', error:null, loading: true};
-    case VALIDATE_EMAIL_SUCCESS:
-    return { ...state, user: action.payload.data.user, authenticated:'authenticated', error:null, loading: false}; //<-- authenticated & email verified
-    case VALIDATE_EMAIL_FAILURE:
-    error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
-    return { ...state, user:null, authenticated:'validate_email', error:error, loading: false}; //<-- authenticated
-
-    case ME_FROM_TOKEN:// loading currentUser("me") from jwttoken in local/session storage storage,
-    return { ...state, user: null, authenticated:'storage', error:null, loading: true};
-    case ME_FROM_TOKEN_SUCCESS://return user, status = authenticated and make loading = false
-    return { ...state, user: action.payload.data.user, authenticated:'authenticated', error:null, loading: false}; //<-- authenticated
-    case ME_FROM_TOKEN_FAILURE:// return error and make loading = false
-     error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
-    return { ...state, user: null, authenticated:'storage', error:error, loading: false};
-    case RESET_TOKEN:// remove token from storage make loading = false
-    return { ...state, user: null, authenticated:'storage', error:null, loading: false};
-
     case SIGNUP_USER:// sign up user, set loading = true and status = signup
-    return { ...state, user: null, authenticated:'signup', error:null, loading: true};
+      return { ...state, user: null, authenticated:'signup', error:null, loading: true};
     case SIGNUP_USER_SUCCESS://return user, status = authenticated and make loading = false
-    return { ...state, user: action.payload.data.user, authenticated:'authenticated', error:null, loading: false}; //<-- authenticated
+      return { ...state, user: action.payload.data.user, authenticated:'authenticated', error:null, loading: false}; //<-- authenticated
     case SIGNUP_USER_FAILURE:// return error and make loading = false
-    error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
-    return { ...state, user: null, authenticated:'signup', error:error, loading: false};
+      error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
+      return { ...state, user: null, authenticated:'signup', error:error, loading: false};
 
 
     case SIGNIN_USER:// sign in user,  set loading = true and status = signin
-    console.log(action.payload);
-    return { ...state, user: null, authenticated:'signin', error:null, loading: true};
+      console.log(action.payload);
+      return { ...state, user: null, authenticated:'signin', error:null, loading: true};
     case SIGNIN_USER_SUCCESS://return authenticated user,  make loading = false and status = authenticated
-    console.log(action);
-    return { ...state, user: action.payload.data.user, authenticated: true, error:null, loading: false}; //<-- authenticated
+      console.log(action);
+      return { ...state, user: action.payload.data.user, authenticated: true, error:null, loading: false}; //<-- authenticated
     case SIGNIN_USER_FAILURE:// return error and make loading = false
-    console.log(action);
-    error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
-    return { ...state, user: null, authenticated: false, error:error, loading: false};
-
-
-    case UPDATE_USER_EMAIL:
-    return{...state, user:{...state.user, email:action.payload.email}};
-
+      console.log(action);
+      error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
+      return { ...state, user: null, authenticated: false, error:error, loading: false};
 
     case LOGOUT_USER:
       return {...state, user:null, authenticated:'logout', error:null, loading: false};
 
-    case RESET_USER:// reset authenticated user to initial state
-    return { ...state, user: null, authenticated:null, error:null, loading: false};
-
     default:
-    return state;
+      return state;
   }
 }

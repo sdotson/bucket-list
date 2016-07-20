@@ -7,6 +7,7 @@ import ListCompleted from './components/list-completed';
 import ListCategory from './components/list-category';
 import App from './components/app';
 import NewItem from './components/new-item';
+import EditItem from './components/edit-item';
 import LogIn from './components/log-in';
 import AuthenticatedComponent from './components/authenticated-component';
 

@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { change } from 'redux-form';
 
 class CheckboxGroup extends Component {
-
   render() {
-    const { options, fieldName } = this.props;
+    const { options, fieldName, initialValues } = this.props;
+
     return (
       <div>
       {options.map((category, index) =>
@@ -15,7 +15,7 @@ class CheckboxGroup extends Component {
             checked={fieldName.value.indexOf(category) >= 0}
             onChange={event => {
               const index = fieldName.value.indexOf(category);
-              console.log('checked', event.target.checked);
+
               if (index < 0) { // wasn't selected
                 if (event.target.checked) { // was checked
                   fieldName.onChange(fieldName.value.concat(category));
