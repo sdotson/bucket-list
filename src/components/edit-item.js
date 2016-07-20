@@ -68,11 +68,15 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    selectedItem: state.selectedItem
+    selectedItem: state.selectedItem,
+    initialValues: state.selectedItem
   };
 }
 
 export default reduxForm({
   form: 'ItemsEditForm',
   fields: ['title', 'description', 'categories']
-}, mapStateToProps, mapDispatchToProps)(EditItem);
+},
+mapStateToProps,
+mapDispatchToProps     // mapDispatchToProps (will bind action creator to dispatch)
+)(EditItem)
