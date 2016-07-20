@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 
 import { connect } from 'react-redux';
-import { editItem } from '../actions/index';
-import { fetchItem, fetchItemSuccess, fetchItemFailure } from '../actions/items';
+import { fetchItem, fetchItemSuccess, fetchItemFailure, editItem } from '../actions/items';
 
 import CheckboxGroup from './checkbox-group';
 
@@ -58,6 +57,13 @@ const mapDispatchToProps = (dispatch) => {
         console.log('response', response);
         !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
       });
+    },
+    editItem: (props) => {
+      console.log('wheee', props);
+      dispatch(editItem(props)).then((response) => {
+        console.log('response', response);
+        // !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
+      });
     }
   }
 }
@@ -71,7 +77,7 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'ItemsEditForm',
-  fields: ['title', 'description', 'categories']
+  fields: ['_id','title', 'description', 'categories']
 },
 mapStateToProps,
 mapDispatchToProps     // mapDispatchToProps (will bind action creator to dispatch)

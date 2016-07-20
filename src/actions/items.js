@@ -18,6 +18,9 @@ export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS';
 export const FETCH_ITEM_FAILURE = 'FETCH_ITEM_FAILURE';
 export const RESET_ACTIVE_ITEM = 'RESET_ACTIVE_ITEM';
 
+// Edit item
+export const EDIT_ITEM = 'EDIT_ITEM';
+
 //Delete item
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
@@ -108,6 +111,22 @@ export function fetchItemFailure(error) {
   return {
     type: FETCH_ITEM_FAILURE,
     payload: error
+  };
+}
+
+export function editItem(props) {
+  //const request = axios.item(`${ROOT_URL}/items`, props);
+  console.log('editItem', props);
+  const request = axios({
+    method: 'put',
+    data: props,
+    url: `${ROOT_URL}/items/${props._id}`,
+    headers: {'Authorization': sessionStorage.getItem('jwtToken')}
+  });
+
+  return {
+    type: EDIT_ITEM,
+    payload: request
   };
 }
 

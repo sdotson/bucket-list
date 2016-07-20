@@ -20,6 +20,15 @@ function item(state, action) {
         ...state,
         done: !state.done
       };
+    case 'EDIT_ITEM':
+      console.log('EDIT_ITEM response',state, action);
+      if (state._id != action.payload.data._id) {
+        return state;
+      }
+      return {
+        ...state,
+        ...action.payload.data
+      };
     default:
       return state;
   }
@@ -41,6 +50,10 @@ export default function(state = [], action) {
     case 'CREATE_ITEM':
       let newItem = action.payload.data.item;
       return [...state, newItem];
+    case 'EDIT_ITEM':
+      return state.map(i => {
+        return item(i, action);
+      });
     case 'DELETE_ITEM':
       return state.filter(item => item._id !== action.payload.data.item._id);
     default:
