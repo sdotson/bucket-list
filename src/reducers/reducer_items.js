@@ -5,7 +5,7 @@ import { FETCH_ITEMS } from '../actions/items';
 function item(state, action) {
   switch(action.type) {
     case 'EXPAND_ITEM':
-      if (state.id != action.key) {
+      if (state._id != action.key) {
         return state;
       }
       return {
@@ -13,7 +13,7 @@ function item(state, action) {
         expanded: !state.expanded
       };
     case 'COMPLETE_ITEM':
-      if (state.id != action.key) {
+      if (state._id != action.key) {
         return state;
       }
       return {

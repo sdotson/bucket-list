@@ -7,6 +7,7 @@ import { deleteItem } from '../actions/items';
 import moment from 'moment';
 
 class ListItem extends Component {
+
   determineItemClass() {
     return this.props.expanded ? 'list-group-item clearfix active' : 'list-group-item clearfix';
   }
@@ -30,7 +31,7 @@ class ListItem extends Component {
             <button type="button" className="btn btn-default">
               <Link to={"/items/" + this.props._id + "/edit"}><span className="glyphicon glyphicon-pencil"></span></Link>
             </button>
-            <button type="button" className="btn btn-default" onClick={() => this.props.expandItem(this.props.id) }>
+            <button type="button" className="btn btn-default" onClick={() => this.props.expandItem(this.props._id) }>
               <span className={this.determineButtonClass()}></span>
             </button>
           </div>
