@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import NavLink from './nav-link';
 
-export default class Nav extends Component {
+class Nav extends Component {
 
   render() {
+    let authenticated = this.props.authenticated;
     return (
       <nav className="navbar navbar-inverse">
   	      <div className="container">
@@ -22,7 +24,12 @@ export default class Nav extends Component {
   	          <ul className="nav navbar-nav">
                 <NavLink to="/">My Bucket List</NavLink>
   	            <NavLink to="/completed">Completed Items</NavLink>
-  	            <NavLink to="/login">Login</NavLink>
+                {
+                  authenticated ?
+                  <NavLink to="/logout">Logout</NavLink>
+                  :
+                  <NavLink to="/login">Login</NavLink>
+                }
   	          </ul>
   	        </div>
   	      </div>
@@ -30,3 +37,9 @@ export default class Nav extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+    authenticated: state.user.authenticated,
+});
+
+export default connect(mapStateToProps)(Nav);
