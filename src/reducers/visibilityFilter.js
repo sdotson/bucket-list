@@ -5,13 +5,15 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch(action) {
     case 'SHOW_ALL_COMPLETED':
-      return state;
+      return { completed: true };
     case 'SHOW_ALL_UNCOMPLETED':
-      return state;
+      return { completed: false };
     case 'SHOW_CATEGORY':
       return state;
     case 'SHOW_CUSTOM':
       return state;
+    case 'RESET_FILTER':
+      return {};
     default:
       return state;
   }

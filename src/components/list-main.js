@@ -10,7 +10,7 @@ export default class ListMain extends Component {
       <div>
         <h2>My Bucket List</h2>
         <p><Link to="items/new"><span className="glyphicon glyphicon-plus"></span> Add New Item</Link></p>
-        <List filter={this.props.route.filter} />
+        <List filter={ {completed: false} } />
       </div>
     );
   }

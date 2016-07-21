@@ -23,3 +23,10 @@ export function showCategory(payload) {
     payload
   };
 }
+
+export function resetFilter(payload) {
+  return {
+    type: 'RESET_FILTER',
+    payload
+  };
+}

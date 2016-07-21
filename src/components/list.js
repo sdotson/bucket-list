@@ -11,7 +11,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchItems: () => {
       dispatch(fetchItems()).then((response) => {
-        console.log('response', response);
             !response.error ? dispatch(fetchItemsSuccess(response.payload)) : dispatch(fetchItemsFailure(response.payload));
           });
     }
@@ -41,10 +40,11 @@ class List extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  var filter = props.filter;
   return {
     items: state.items,
-    filter: state.visibilityFilter
+    filter: { ...state.visibilityFilter, ...filter }
   };
 }
 
