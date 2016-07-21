@@ -16,7 +16,7 @@ export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 const ROOT_URL = 'http://192.241.148.238:3000/api';
 
 export function signUpUser(formValues) {
-  const request = axios.post(`${ROOT_URL}/users/signup`, formValues);
+  const request = axios.post(`${ROOT_URL}/users/register`, formValues);
 
   return {
     type: SIGNUP_USER,
@@ -25,6 +25,7 @@ export function signUpUser(formValues) {
 }
 
 export function signUpUserSuccess(user) {
+  console.log('signup success action');
   return {
     type: SIGNUP_USER_SUCCESS,
     payload: user
@@ -32,6 +33,7 @@ export function signUpUserSuccess(user) {
 }
 
 export function signUpUserFailure(error) {
+  console.log('signup failure action');
   return {
     type: SIGNUP_USER_FAILURE,
     payload: error

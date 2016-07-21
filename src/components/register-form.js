@@ -1,14 +1,22 @@
 import React, { Component, PropTypes } from 'react';
-import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
+import { signUpUser, signUpUserSuccess, signUpUserFailure } from '../actions/users';
 import { reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 
-class RegisterForm extends Component {
+export default class RegisterForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
 
+  componentWillMount() {
+    if(this.props.user.authenticated === true || this.props.user.registered === true) {
+      this.context.router.push('/');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(nextProps.user.authenticated === true) {
+    console.log('nextProps', nextProps.user);
+    if(nextProps.user.authenticated === true || nextProps.user.registered === true) {
       this.context.router.push('/');
     }
 
@@ -25,7 +33,8 @@ class RegisterForm extends Component {
 
     return (
       <div className="container">
-      <form onSubmit={handleSubmit(this.props.signInUser.bind(this))}>
+      <h1 className="page-header">Register</h1>
+      <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
 
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
           <label className="control-label">Email*</label>
@@ -46,33 +55,10 @@ class RegisterForm extends Component {
             {password.touched ? password.error : ''}
           </div>
         </div>
-        <button type="submit" className="btn btn-primary"  disabled={submitting} >Submit</button>
-        <Link to="/" className="btn btn-error">Cancel</Link>
+        <button type="submit" className="btn btn-primary"  disabled={submitting} >Register</button>
       </form>
-      <p><Link to="/register">Register for an account</Link></p>
-
       </div>
 
     );
   }
 }
-
-
-function mapStateToProps(state, ownProps) {
-  return {
-    user: state.user
-  };
-}
-
-
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-export default reduxForm({
-  form: 'RegisterForm',
-  fields: ['email', 'password'],
-  initialValues: {
-    email: 'user1@email.com',
-    password: 'password'
-  },
-  null
-}, mapStateToProps)(RegisterForm);
