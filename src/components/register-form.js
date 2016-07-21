@@ -1,16 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
-
-  componentWillMount() {
-    //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
-    //always reset that global state back to null when you REMOUNT
-    //  this.props.resetMe();
-  }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
@@ -54,7 +47,7 @@ class LoginForm extends Component {
         <button type="submit" className="btn btn-primary"  disabled={submitting} >Submit</button>
         <Link to="/" className="btn btn-error">Cancel</Link>
       </form>
-      <p style={{paddingTop: '20px'}}><Link to="/register">Register for an account</Link></p>
+      <p><Link to="/register">Register for an account</Link></p>
 
       </div>
 
@@ -62,4 +55,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default RegisterForm;

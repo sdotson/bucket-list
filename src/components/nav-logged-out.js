@@ -7,6 +7,7 @@ export default class NavLoggedIn extends Component {
     return (
       <ul className="nav navbar-nav">
         <NavLink to="/login">Login</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </ul>
     );
   }

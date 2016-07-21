@@ -9,11 +9,13 @@ import App from './components/app';
 import NewItem from './components/new-item';
 import EditItem from './components/edit-item';
 import LogIn from './components/log-in';
+import RegisterForm from './components/register-form';
 import AuthenticatedComponent from './components/authenticated-component';
 
 export default (
   <Route path="/" component={App}>
     <Route path="/login" component={LogIn} />
+    <Route path="/register" component={RegisterForm} />
     <Route component={AuthenticatedComponent}>
       <IndexRoute component={ListMain} />
       <Route path="my-bucket-list" component={ListMain} />
