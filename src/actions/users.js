@@ -42,7 +42,7 @@ export function signUpUserFailure(error) {
 
 export function signInUser(formValues) {
   const request = axios.post(`${ROOT_URL}/authenticate`, formValues);
-
+  console.log('sign in attempt', formValues);
   return {
     type: SIGNIN_USER,
     payload: request

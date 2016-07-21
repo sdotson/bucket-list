@@ -17,10 +17,6 @@ return new Promise((resolve, reject) => {
         dispatch(signUpUserFailure(response.payload));
          reject(data); //this is for redux-form itself
        } else {
-        //store JWT Token to browser session storage
-        //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
-        //sessionStorage = persisted only in current tab
-        sessionStorage.setItem('jwtToken', response.payload.data.token);
         //let other components know that we got user and things are fine by updating the redux` state
         dispatch(signInUser(values))
         .then((response) => {
