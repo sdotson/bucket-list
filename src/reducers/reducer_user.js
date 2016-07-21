@@ -36,18 +36,15 @@ export default function(state = INITIAL_STATE, action) {
 
 
     case SIGNIN_USER:// sign in user,  set loading = true and status = signin
-      console.log(action.payload);
       return { ...state, user: null, authenticated:'signin', error:null, loading: true};
     case SIGNIN_USER_SUCCESS://return authenticated user,  make loading = false and status = authenticated
-      console.log(action);
       return { ...state, user: action.payload.data.user, authenticated: true, error:null, loading: false}; //<-- authenticated
     case SIGNIN_USER_FAILURE:// return error and make loading = false
-      console.log(action);
       error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
       return { ...state, user: null, authenticated: false, error:error, loading: false};
 
     case LOGOUT_USER:
-      return {...state, user:null, authenticated:'logout', error:null, loading: false};
+      return {...state, user:null, authenticated: false, error:null, loading: false};
 
     default:
       return state;

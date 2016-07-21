@@ -63,6 +63,7 @@ export function signInUserFailure(error) {
 }
 
 export function logoutUser() {
+  sessionStorage.removeItem('jwtToken');
   return {
     type: LOGOUT_USER
   };

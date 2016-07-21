@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import NavLink from './nav-link';
 
+import { logoutUser } from '../actions/users';
+
 class Nav extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  logout(e) {
+    this.props.logoutUser();
+    this.context.router.push('/login');
+  }
 
   render() {
     let authenticated = this.props.authenticated;
+
     return (
       <nav className="navbar navbar-inverse">
   	      <div className="container">
@@ -26,7 +37,7 @@ class Nav extends Component {
   	            <NavLink to="/completed">Completed Items</NavLink>
                 {
                   authenticated ?
-                  <NavLink to="/logout">Logout</NavLink>
+                  <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
                   :
                   <NavLink to="/login">Login</NavLink>
                 }
@@ -42,4 +53,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { logoutUser })(Nav);
