@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
+import { reduxForm } from 'redux-form';
 
 class RegisterForm extends Component {
   static contextTypes = {
@@ -55,4 +57,22 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+
+function mapStateToProps(state, ownProps) {
+  return {
+    user: state.user
+  };
+}
+
+
+// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
+// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
+export default reduxForm({
+  form: 'RegisterForm',
+  fields: ['email', 'password'],
+  initialValues: {
+    email: 'user1@email.com',
+    password: 'password'
+  },
+  null
+}, mapStateToProps)(RegisterForm);
