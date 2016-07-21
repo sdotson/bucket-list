@@ -13,7 +13,6 @@ class LoginForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps);
     if(nextProps.user.authenticated === true) {
       this.context.router.push('/');
     }

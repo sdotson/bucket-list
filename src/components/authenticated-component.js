@@ -16,8 +16,7 @@ class AuthenticatedComponent extends Component {
     }
 
     checkAuth() {
-      var token = sessionStorage.getItem('jwtToken');
-      console.log('this.props.authenticated',this.props.authenticated, token);
+      const token = sessionStorage.getItem('jwtToken');
 
       if (this.props.authenticated !== true) {
         let redirectAfterLogin = this.props.location.pathname;

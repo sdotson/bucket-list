@@ -21,7 +21,6 @@ function item(state, action) {
         completed: !state.completed
       };
     case 'EDIT_ITEM':
-      console.log('EDIT_ITEM response',state, action);
       if (state._id != action.payload.data._id) {
         return state;
       }
@@ -37,7 +36,6 @@ function item(state, action) {
 export default function(state = [], action) {
   switch(action.type) {
     case 'FETCH_ITEMS':
-      console.log('FETCH_ITEMS', action.payload);
       return action.payload.data || state;
     case 'EXPAND_ITEM':
       return state.map(i => {

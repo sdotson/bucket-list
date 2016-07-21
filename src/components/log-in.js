@@ -30,10 +30,8 @@ const validateAndLogInUser = (values, dispatch) => {
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
           dispatch(signInUserFailure(response.payload));
-          console.log('data',data);
            reject(data); //this is for redux-form itself
          } else {
-           console.log('made it! Logged in (hopefully...)');
           //store JWT Token to browser session storage
           //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
           //sessionStorage = persisted only in current tab
@@ -57,7 +55,6 @@ const mapDispatchToProps = (dispatch) => {
 
 
 function mapStateToProps(state, ownProps) {
-  console.log('state', state);
   return {
     user: state.user
   };

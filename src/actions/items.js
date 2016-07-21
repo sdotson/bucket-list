@@ -88,7 +88,6 @@ export function createItemFailure(error) {
 }
 
 export function fetchItem(id) {
-  console.log('inside action', id);
   const request = axios({
     method: 'get',
     url: `${ROOT_URL}/items/${id}`,
@@ -118,7 +117,6 @@ export function fetchItemFailure(error) {
 
 export function editItem(props) {
   //const request = axios.item(`${ROOT_URL}/items`, props);
-  console.log('editItem', props);
   const request = axios({
     method: 'put',
     data: props,

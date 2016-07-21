@@ -5,17 +5,6 @@ import {
 	LOGOUT_USER
 } from '../actions/users';
 
-
-//user = userobj,
-// status can be:
-// 1. 'storage' ie. localstorage / sessionstorage)
-// 2. 'signup' (signing up)
-// 3. 'signin' (signing in)
-// 4. 'validate'(validate fields)
-// 5. 'validate_email' (validating email token)
-// 5. 'authenticated'(after signin)
-// 6. 'logout' (after logout)
-
 let token = sessionStorage.getItem('jwtToken');
 
 let authenticated = token ? true : false;

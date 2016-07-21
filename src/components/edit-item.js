@@ -54,14 +54,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchItem: (id) => {
       dispatch(fetchItem(id)).then((response) => {
-        console.log('response', response);
         !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
       });
     },
     editItem: (props) => {
-      console.log('wheee', props);
       dispatch(editItem(props)).then((response) => {
-        console.log('response', response);
         // !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
       });
     }
@@ -69,7 +66,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
     initialValues: state.selectedItem
   };
@@ -80,5 +76,5 @@ export default reduxForm({
   fields: ['_id','title', 'description', 'categories']
 },
 mapStateToProps,
-mapDispatchToProps     // mapDispatchToProps (will bind action creator to dispatch)
+mapDispatchToProps
 )(EditItem)

@@ -3,19 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import NavLink from './nav-link';
-
-import { logoutUser } from '../actions/users';
+import NavLoggedIn from './nav-logged-in';
+import NavLoggedOut from './nav-logged-out';
 
 class Nav extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  }
-
-  logout(e) {
-    this.props.logoutUser();
-    this.context.router.push('/login');
-  }
-
   render() {
     let authenticated = this.props.authenticated;
 
@@ -33,13 +24,11 @@ class Nav extends Component {
   	        </div>
   	        <div id="navbar" className="collapse navbar-collapse">
   	          <ul className="nav navbar-nav">
-                <NavLink to="/">My Bucket List</NavLink>
-  	            <NavLink to="/completed">Completed Items</NavLink>
                 {
                   authenticated ?
-                  <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
+                  <NavLoggedIn />
                   :
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLoggedOut />
                 }
   	          </ul>
   	        </div>
@@ -53,4 +42,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps, { logoutUser })(Nav);
+export default connect(mapStateToProps)(Nav);

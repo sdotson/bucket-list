@@ -39,7 +39,6 @@ export function signUpUserFailure(error) {
 }
 
 export function signInUser(formValues) {
-  console.log('formValues', formValues);
   const request = axios.post(`${ROOT_URL}/authenticate`, formValues);
 
   return {
