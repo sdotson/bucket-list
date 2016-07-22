@@ -19,13 +19,6 @@ export default class RegisterForm extends Component {
     if(nextProps.user.authenticated === true || nextProps.user.registered === true) {
       this.context.router.push('/');
     }
-
-    //error
-    //Throw error if it was not already thrown (check this.props.user.error to see if alert was already shown)
-    //If u dont check this.props.user.error, u may throw error multiple times due to redux-form's validation errors
-    if(nextProps.user.authenticated === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
-      alert(nextProps.user.error.message);
-    }
   }
 
   render() {
@@ -34,6 +27,11 @@ export default class RegisterForm extends Component {
     return (
       <div className="container">
       <h1 className="page-header">Register</h1>
+      { this.props.user.error ?
+        <div className="alert alert-danger">
+          <strong>Error</strong> The email you provided already has an account. Try logging in or resetting your password.
+        </div>
+        : '' }
       <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
 
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
