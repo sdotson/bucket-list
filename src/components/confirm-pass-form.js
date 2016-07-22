@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class LoginForm extends Component {
+class ResetForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -21,7 +21,8 @@ class LoginForm extends Component {
 
           <div className="main-login">
 
-            <h3>Please Log In, or <Link to="/register">Sign Up</Link></h3>
+            <h3>Choose New Password</h3>
+            <p>Enter your email below. We will send you a link to reset your password.</p>
             <form onSubmit={handleSubmit(this.props.signInUser.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>
@@ -33,20 +34,8 @@ class LoginForm extends Component {
                 {asyncValidating === 'email' ? 'validating..': ''}
                 </div>
               </div>
-              <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-                <label>Password</label> <Link to="/reset-password">(Reset password)</Link>
-                <input value="password" type="password" className="form-control" {...password} />
-                <div className="help-block">
-                  {password.touched ? password.error : ''}
-                </div>
-              </div>
-              <div className="checkbox pull-right">
-                <label>
-                  <input type="checkbox" {...rememberme} />
-                  Remember me </label>
-              </div>
               <button type="submit" className="btn btn btn-primary">
-                Log In
+                Reset Password
               </button>
             </form>
             { this.props.user.error ?
@@ -63,4 +52,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default ResetForm;

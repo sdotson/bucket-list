@@ -1,4 +1,4 @@
-import LoginForm from './login-form.js';
+import ConfirmPassForm from './confirm-pass-form.js';
 import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
 import { reduxForm } from 'redux-form';
 
@@ -64,7 +64,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default reduxForm({
-  form: 'LoginForm',
+  form: 'ResetForm',
   fields: ['email', 'password', 'rememberme'],
   initialValues: {
     email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : '',
@@ -73,4 +73,4 @@ export default reduxForm({
   },
   null,
   validate
-}, mapStateToProps, mapDispatchToProps)(LoginForm);
+}, mapStateToProps, mapDispatchToProps)(ConfirmPassForm);
