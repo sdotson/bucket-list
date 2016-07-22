@@ -30,6 +30,7 @@ class LoginForm extends Component {
 
     return (
       <div className="container">
+      <h1 className="page-header">Login</h1>
       <form onSubmit={handleSubmit(this.props.signInUser.bind(this))}>
 
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>

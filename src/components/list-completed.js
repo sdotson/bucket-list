@@ -8,7 +8,7 @@ export default class ListCompleted extends Component {
   render() {
     return (
       <div>
-        <h2>Completed Items</h2>
+        <h1 className="page-header">Completed Items</h1>
         <List filter={ {completed: true} } />
       </div>
     );
