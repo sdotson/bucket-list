@@ -23,6 +23,7 @@ const validateAndLogInUser = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
 
+  console.log('submitted values:', values);
    dispatch(signInUser(values))
     .then((response) => {
         let data = response.payload.data;
