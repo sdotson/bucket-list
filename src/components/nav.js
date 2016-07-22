@@ -5,8 +5,18 @@ import { Link } from 'react-router';
 import NavLink from './nav-link';
 import NavLoggedIn from './nav-logged-in';
 import NavLoggedOut from './nav-logged-out';
+import { logoutUser } from '../actions/users';
 
 class Nav extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  logout(e) {
+    this.props.logoutUser();
+    this.context.router.push('/');
+  }
+
   render() {
     let authenticated = this.props.authenticated;
 
@@ -33,9 +43,17 @@ class Nav extends Component {
                   authenticated ?
                   <NavLoggedIn />
                   :
-                  <NavLoggedOut />
+                  ''
                 }
   	          </ul>
+              <ul className="nav navbar-nav navbar-right">
+                {
+                  authenticated ?
+                  <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
+                  :
+                  <NavLoggedOut />
+                }
+              </ul>
   	        </div>
   	      </div>
   	    </nav>
@@ -47,4 +65,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { logoutUser })(Nav);
