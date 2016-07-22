@@ -13,7 +13,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {asyncValidating, fields: {email, password}, handleSubmit, submitting, user } = this.props;
+    const {asyncValidating, fields: {email, password, rememberme}, handleSubmit, submitting, user } = this.props;
 
     return (
       <div className="container">
@@ -42,7 +42,7 @@ class LoginForm extends Component {
               </div>
               <div className="checkbox pull-right">
                 <label>
-                  <input type="checkbox" />
+                  <input type="checkbox" {...rememberme} />
                   Remember me </label>
               </div>
               <button type="submit" className="btn btn btn-primary">

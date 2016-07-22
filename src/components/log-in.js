@@ -22,6 +22,7 @@ function validate(values) {
 const validateAndLogInUser = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
+    console.log('values',values);
    dispatch(signInUser(values))
     .then((response) => {
         let data = response.payload.data;
@@ -35,6 +36,12 @@ const validateAndLogInUser = (values, dispatch) => {
           //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
           //sessionStorage = persisted only in current tab
           sessionStorage.setItem('jwtToken', response.payload.data.token);
+
+          if (values.rememberme) {
+            localStorage.setItem('email', values.email);
+          } else {
+            localStorage.removeItem('email');
+          }
           //let other components know that we got user and things are fine by updating the redux` state
           dispatch(signInUserSuccess(response.payload));
           resolve();//this is for redux-form itself
@@ -59,10 +66,11 @@ function mapStateToProps(state, ownProps) {
 
 export default reduxForm({
   form: 'LoginForm',
-  fields: ['email', 'password'],
+  fields: ['email', 'password', 'rememberme'],
   initialValues: {
-    email: 'user1@email.com',
-    password: 'password'
+    email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : '',
+    password: 'password',
+    rememberme: localStorage.getItem('email') !== null ? true : false
   },
   null,
   validate
