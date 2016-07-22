@@ -14,10 +14,10 @@ import AuthenticatedComponent from './components/authenticated-component';
 
 export default (
   <Route path="/" component={App}>
+    <IndexRoute component={LogIn} />
     <Route path="/login" component={LogIn} />
     <Route path="/register" component={Register} />
     <Route component={AuthenticatedComponent}>
-      <IndexRoute component={ListMain} />
       <Route path="my-bucket-list" component={ListMain} />
       <Route path="completed" component={ListCompleted} />
       <Route path="items/new" component={NewItem} />

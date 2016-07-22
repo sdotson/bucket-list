@@ -30,7 +30,7 @@ export default class RegisterForm extends Component {
 
           <div className="main-login">
 
-            <h3>Register</h3>
+            <h3>Sign up</h3>
             <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>
@@ -49,13 +49,8 @@ export default class RegisterForm extends Component {
                   {password.touched ? password.error : ''}
                 </div>
               </div>
-              <div className="checkbox pull-right">
-                <label>
-                  <input type="checkbox" />
-                  Remember me </label>
-              </div>
               <button type="submit" className="btn btn btn-primary">
-                Log In
+                Sign up
               </button>
             </form>
             { this.props.user.error ?

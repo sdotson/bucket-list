@@ -8,7 +8,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      this.context.router.push('/');
+      this.context.router.push('/my-bucket-list');
     }
   }
 

@@ -20,7 +20,7 @@ class AuthenticatedComponent extends Component {
 
       if (this.props.authenticated !== true) {
         let redirectAfterLogin = this.props.location.pathname;
-        this.context.router.push('/login');
+        this.context.router.push('/');
       }
     }
 

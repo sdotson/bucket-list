@@ -17,7 +17,7 @@ class EditItem extends Component {
 
   onSubmit(props) {
     this.props.editItem(props);
-    this.context.router.push('/');
+    this.context.router.push('/my-bucket-list');
   }
 
   render() {

@@ -20,7 +20,12 @@ class Nav extends Component {
   	            <span className="icon-bar"></span>
   	            <span className="icon-bar"></span>
   	          </button>
-  	          <a className="navbar-brand" href="#">Bucket List</a>
+              {
+                authenticated ?
+                <NavLink className="navbar-brand" to="/my-bucket-list">Bucket List</NavLink>
+                :
+                <NavLink className="navbar-brand" to="/">Bucket List</NavLink>
+              }
   	        </div>
   	        <div id="navbar" className="collapse navbar-collapse">
   	          <ul className="nav navbar-nav">

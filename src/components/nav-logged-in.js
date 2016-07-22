@@ -11,13 +11,12 @@ class NavLoggedIn extends Component {
 
   logout(e) {
     this.props.logoutUser();
-    this.context.router.push('/login');
+    this.context.router.push('/');
   }
 
   render() {
     return (
       <ul className="nav navbar-nav">
-        <NavLink to="/">My Bucket List</NavLink>
         <NavLink to="/completed">Completed Items</NavLink>
         <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
       </ul>
