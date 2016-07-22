@@ -26,35 +26,45 @@ export default class RegisterForm extends Component {
 
     return (
       <div className="container">
-      <h1 className="page-header">Register</h1>
-      { this.props.user.error ?
-        <div className="alert alert-danger">
-          <strong>Error</strong> The email you provided already has an account. Try logging in or resetting your password.
-        </div>
-        : '' }
-      <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
+        <div className="row">
 
-        <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Email*</label>
-          <input value="user1@email.com" placeholder="user@email.com" type="text" className="form-control" {...email} />
-          <div className="help-block">
-            {email.touched ? email.error : ''}
-          </div>
-          <div className="help-block">
-          {asyncValidating === 'email' ? 'validating..': ''}
+          <div className="main-login">
+
+            <h3>Register</h3>
+            <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))} role="form">
+              <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
+                <label>Email</label>
+                <input value="user1@email.com" placeholder="user@email.com" type="text" className="form-control" {...email} />
+                <div className="help-block">
+                  {email.touched ? email.error : ''}
+                </div>
+                <div className="help-block">
+                {asyncValidating === 'email' ? 'validating..': ''}
+                </div>
+              </div>
+              <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
+                <label>Password</label>
+                <input value="password" type="password" className="form-control" {...password} />
+                <div className="help-block">
+                  {password.touched ? password.error : ''}
+                </div>
+              </div>
+              <div className="checkbox pull-right">
+                <label>
+                  <input type="checkbox" />
+                  Remember me </label>
+              </div>
+              <button type="submit" className="btn btn btn-primary">
+                Log In
+              </button>
+            </form>
+            { this.props.user.error ?
+              <div className="alert alert-danger" style={{marginTop: '20px'}}>
+                <strong>Error</strong> This email already has an account. Try logging in or resetting your password.
+              </div>
+              : '' }
           </div>
         </div>
-
-
-        <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Password*</label>
-          <input value="password" type="password" className="form-control" {...password} />
-          <div className="help-block">
-            {password.touched ? password.error : ''}
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary"  disabled={submitting} >Register</button>
-      </form>
       </div>
 
     );

@@ -8,7 +8,8 @@ export default class NavLink extends Component {
 
   render() {
     let isActive = this.context.router.isActive(this.props.to, true),
-    className = isActive ? "active" : "";
+    className = isActive === true ? "active" : "";
+    console.log('isActive', isActive);
 
     return (
       <li className={className}>
