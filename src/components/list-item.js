@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { expandItem } from '../actions/index';
-import { deleteItem, editItem, completeItem } from '../actions/items';
+import { deleteItem, editItem, completeItem, expandItem } from '../actions/items';
 
 import moment from 'moment';
 

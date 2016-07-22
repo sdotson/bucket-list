@@ -23,6 +23,10 @@ export const EDIT_ITEM = 'EDIT_ITEM';
 
 export const COMPLETE_ITEM = 'COMPLETE_ITEM';
 
+export const EXPAND_ITEM = 'EXPAND_ITEM';
+
+export const API_FAILURE = 'API_FAILURE';
+
 //Delete item
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
@@ -167,5 +171,12 @@ export function deleteItemFailure(response) {
   return {
     type: DELETE_ITEM_FAILURE,
     payload: response
+  };
+}
+
+export function expandItem(id) {
+  return {
+    type: EXPAND_ITEM,
+    key: id
   };
 }

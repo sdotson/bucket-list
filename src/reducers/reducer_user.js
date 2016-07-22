@@ -4,9 +4,8 @@ import {
 	LOGOUT_USER
 } from '../actions/users';
 
-let token = sessionStorage.getItem('jwtToken');
-
-let authenticated = false;
+let token = sessionStorage.getItem('jwtToken'),
+	authenticated = false;
 
 const INITIAL_STATE = {user: null, authenticated: authenticated, registered: false, error:null, loading: false};
 
