@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
-import { fetchItems, fetchItemsSuccess, fetchItemsFailure } from '../actions/items';
+import { fetchItems, fetchItemsSuccess, itemsApiFailure } from '../actions/items';
 
 import ListItem from './list-item';
 
@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchItems: () => {
       dispatch(fetchItems()).then((response) => {
-            !response.error ? dispatch(fetchItemsSuccess(response.payload)) : dispatch(fetchItemsFailure(response.payload));
+            !response.error ? dispatch(fetchItemsSuccess(response.payload)) : dispatch(itemsApiFailure(response.error));
           });
     }
   }
@@ -33,17 +33,29 @@ class List extends Component {
   }
   render() {
     return (
-      <ul className="list-group">
-        {this.renderList()}
-      </ul>
+      <div>
+        <ul className="list-group">
+          {this.renderList()}
+        </ul>
+        {
+          this.props.error ?
+            <div className="alert alert-danger" style={{marginTop: '20px'}}>
+              <strong>Error</strong> There was an error retrieving your items. Please try again later.
+            </div>
+          :
+          ''
+        }
+      </div>
     );
   }
 }
 
 function mapStateToProps(state, props) {
   var filter = props.filter;
+  console.log('state',state);
   return {
-    items: state.items,
+    items: state.items.list,
+    error: state.items.error,
     filter: { ...state.visibilityFilter, ...filter }
   };
 }

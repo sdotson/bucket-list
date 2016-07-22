@@ -51,7 +51,7 @@ class LoginForm extends Component {
             </form>
             { this.props.user.error ?
               <div className="alert alert-danger" style={{marginTop: '20px'}}>
-              <strong>Error</strong> The email and/or password provided are not correct. Please try again
+                <strong>Error</strong> The email and/or password provided are not correct. Please try again
               </div>
               : '' }
           </div>

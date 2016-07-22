@@ -57,9 +57,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
   form: 'LoginForm',
   fields: ['email', 'password'],

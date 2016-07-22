@@ -25,7 +25,7 @@ export const COMPLETE_ITEM = 'COMPLETE_ITEM';
 
 export const EXPAND_ITEM = 'EXPAND_ITEM';
 
-export const API_FAILURE = 'API_FAILURE';
+export const ITEMS_API_FAILURE = 'ITEMS_API_FAILURE';
 
 //Delete item
 export const DELETE_ITEM = 'DELETE_ITEM';
@@ -45,6 +45,13 @@ export function fetchItems() {
   return {
     type: FETCH_ITEMS,
     payload: request
+  };
+}
+
+export function itemsApiFailure(error) {
+  return {
+    type: ITEMS_API_FAILURE,
+    payload: error
   };
 }
 

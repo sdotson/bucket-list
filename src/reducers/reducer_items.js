@@ -1,13 +1,12 @@
 import _ from 'lodash';
 
 import {
-	FETCH_ITEMS, EXPAND_ITEM, COMPLETE_ITEM, EDIT_ITEM, DELETE_ITEM, CREATE_ITEM
+	FETCH_ITEMS, EXPAND_ITEM, COMPLETE_ITEM, EDIT_ITEM, DELETE_ITEM, CREATE_ITEM, ITEMS_API_FAILURE
 } from '../actions/items';
 
 function item(state, action) {
   switch(action.type) {
     case EXPAND_ITEM:
-			console.log('expand item', state, action);
       if (state._id != action.key) {
         return state;
       }
@@ -36,27 +35,29 @@ function item(state, action) {
   }
 }
 
-export default function(state = [], action) {
+export default function(state = { list: [], error: false }, action) {
   switch(action.type) {
+		case ITEMS_API_FAILURE:
+			return {...state, error: action.payload};
     case FETCH_ITEMS:
-      return action.payload.data || state;
+      return { ...state, list: action.payload.data };
     case EXPAND_ITEM:
-      return state.map(i => {
-        return item(i, action);
-      });
+			return {...state, list: state.list.map(i => {
+				return item(i, action);
+			})};
     case COMPLETE_ITEM:
-      return state.map(i => {
-        return item(i, action);
-      });
+			return {...state, list: state.list.map(i => {
+				return item(i, action);
+			})};
     case CREATE_ITEM:
       let newItem = action.payload.data.item;
-      return [...state, newItem];
+      return {...state, list: [...state.list, newItem]};
     case EDIT_ITEM:
-      return state.map(i => {
+      return {...state, list: state.list.map(i => {
         return item(i, action);
-      });
+      })};
     case DELETE_ITEM:
-      return state.filter(item => item._id !== action.payload.data.item._id);
+      return {...state, list: state.list.filter(item => item._id !== action.payload.data.item._id)};
     default:
       return state;
   }
