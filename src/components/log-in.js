@@ -40,13 +40,10 @@ const validateAndLogInUser = (values, dispatch) => {
           //let other components know that we got user and things are fine by updating the redux` state
           dispatch(signInUserSuccess(response.payload));
           resolve();//this is for redux-form itself
-
         }
       });
   });
 };
-
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -57,7 +54,8 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state, ownProps) {
   return {
-    user: state.user
+    user: state.user,
+    error: state.user.error
   };
 }
 
