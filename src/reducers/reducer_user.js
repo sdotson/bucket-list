@@ -5,7 +5,7 @@ import {
 } from '../actions/users';
 
 let token = sessionStorage.getItem('jwtToken'),
-	authenticated = false;
+	authenticated = token ? true : false;
 
 const INITIAL_STATE = {user: null, authenticated: authenticated, registered: false, error:null, loading: false};
 

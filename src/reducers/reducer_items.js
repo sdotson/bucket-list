@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 import {
-	FETCH_ITEMS, EXPAND_ITEM, COMPLETE_ITEM, EDIT_ITEM, DELETE_ITEM, CREATE_ITEM, ITEMS_API_FAILURE
+	FETCH_ITEMS, EXPAND_ITEM, COMPLETE_ITEM, EDIT_ITEM,
+	DELETE_ITEM, CREATE_ITEM, ITEMS_API_FAILURE
 } from '../actions/items';
 
 function item(state, action) {
