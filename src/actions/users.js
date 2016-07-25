@@ -13,6 +13,11 @@ export const SIGNUP_USER = 'SIGNUP_USER';
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 
+export const SEND_PASSWORD_EMAIL = 'SEND_PASSWORD_EMAIL';
+
+export const SEND_EMAIL_SUCCESS = 'SEND_EMAIL_SUCCESS';
+export const SEND_EMAIL_FAILURE = 'SEND_EMAIL_FAILURE';
+
 const ROOT_URL = 'http://192.241.148.238:3000/api';
 
 export function signUpUser(formValues) {
@@ -25,7 +30,6 @@ export function signUpUser(formValues) {
 }
 
 export function signUpUserSuccess(user) {
-  console.log('signup success action');
   return {
     type: SIGNUP_USER_SUCCESS,
     payload: user
@@ -33,10 +37,23 @@ export function signUpUserSuccess(user) {
 }
 
 export function signUpUserFailure(error) {
-  console.log('signup failure action');
   return {
     type: SIGNUP_USER_FAILURE,
     payload: error
+  };
+}
+
+export function sendEmailFailure(error) {
+  return {
+    type: SEND_EMAIL_FAILURE,
+    payload: error
+  };
+}
+
+export function sendEmailSuccess(data) {
+  return {
+    type: SEND_EMAIL_SUCCESS,
+    payload: data
   };
 }
 
@@ -67,5 +84,14 @@ export function logoutUser() {
   sessionStorage.removeItem('jwtToken');
   return {
     type: LOGOUT_USER
+  };
+}
+
+export function sendPasswordEmail(formValues) {
+  const request = axios.post(`${ROOT_URL}/users/password/reset`, formValues);
+
+  return {
+    type: SEND_PASSWORD_EMAIL,
+    payload: request
   };
 }

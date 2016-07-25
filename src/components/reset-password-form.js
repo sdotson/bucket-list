@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class ResetForm extends Component {
+class ResetPasswordForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -52,4 +52,4 @@ class ResetForm extends Component {
   }
 }
 
-export default ResetForm;
+export default ResetPasswordForm;

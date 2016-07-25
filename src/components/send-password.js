@@ -1,5 +1,5 @@
-import ResetPasswordForm from './reset-password-form.js';
-import { sendPasswordEmail } from '../actions/users';
+import SendPasswordForm from './send-password-form.js';
+import { sendPasswordEmail, sendEmailFailure, sendEmailSuccess } from '../actions/users';
 import { reduxForm } from 'redux-form';
 
 
@@ -15,31 +15,20 @@ function validate(values) {
 }
 
 //For any field errors upon submission (i.e. not instant check)
-const sendPassword = (values, dispatch) => {
+const sendEmail = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
     console.log('values',values);
    dispatch(sendPasswordEmail(values))
     .then((response) => {
         let data = response.payload.data;
-        //if any one of these exist, then there is a field error
+        console.log('data', data);
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
-          dispatch(signInUserFailure(response.payload));
+          dispatch(sendEmailFailure(response.payload));
            reject(data); //this is for redux-form itself
          } else {
-          //store JWT Token to browser session storage
-          //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
-          //sessionStorage = persisted only in current tab
-          sessionStorage.setItem('jwtToken', response.payload.data.token);
-
-          if (values.rememberme) {
-            localStorage.setItem('email', values.email);
-          } else {
-            localStorage.removeItem('email');
-          }
-          //let other components know that we got user and things are fine by updating the redux` state
-          dispatch(signInUserSuccess(response.payload));
+          dispatch(sendEmailSuccess(response.payload));
           resolve();//this is for redux-form itself
         }
       });
@@ -48,8 +37,8 @@ const sendPassword = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   sendPassword
- };
+   sendEmail: sendEmail
+  }
 }
 
 function mapStateToProps(state, ownProps) {
@@ -67,4 +56,4 @@ export default reduxForm({
   },
   null,
   validate
-}, mapStateToProps, mapDispatchToProps)(ResetPasswordForm);
+}, mapStateToProps, mapDispatchToProps)(SendPasswordForm);

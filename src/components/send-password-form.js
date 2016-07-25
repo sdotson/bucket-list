@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class ResetForm extends Component {
+class SendPasswordForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -13,7 +13,7 @@ class ResetForm extends Component {
   }
 
   render() {
-    const {asyncValidating, fields: {email, password, rememberme}, handleSubmit, submitting, user } = this.props;
+    const {asyncValidating, fields: {email}, handleSubmit, submitting, user } = this.props;
 
     return (
       <div className="container">
@@ -23,7 +23,7 @@ class ResetForm extends Component {
 
             <h3>Reset Password</h3>
             <p>Enter your email below. We will send you a link to reset your password.</p>
-            <form onSubmit={handleSubmit(this.props.signInUser.bind(this))} role="form">
+            <form onSubmit={handleSubmit(this.props.sendEmail.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>
                 <input value="user1@email.com" placeholder="user@email.com" type="text" className="form-control" {...email} />
@@ -52,4 +52,4 @@ class ResetForm extends Component {
   }
 }
 
-export default ResetForm;
+export default SendPasswordForm;

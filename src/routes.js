@@ -10,8 +10,8 @@ import NewItem from './components/new-item';
 import EditItem from './components/edit-item';
 import LogIn from './components/log-in';
 import Register from './components/register';
+import SendPassword from './components/send-password';
 import ResetPassword from './components/reset-password';
-import ConfirmPassword from './components/confirm-password';
 import AuthenticatedComponent from './components/authenticated-component';
 
 export default (
@@ -19,8 +19,8 @@ export default (
     <IndexRoute component={LogIn} />
     <Route path="/login" component={LogIn} />
     <Route path="/register" component={Register} />
+    <Route path="/send-password" component={SendPassword} />
     <Route path="/reset-password" component={ResetPassword} />
-    <Route path="/confirm-password" component={ConfirmPassword} />
     <Route component={AuthenticatedComponent}>
       <Route path="my-bucket-list" component={ListMain} />
       <Route path="completed" component={ListCompleted} />
