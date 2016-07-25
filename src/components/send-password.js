@@ -49,7 +49,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default reduxForm({
-  form: 'ResetForm',
+  form: 'SendEmailForm',
   fields: ['email'],
   initialValues: {
     email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''

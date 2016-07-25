@@ -99,8 +99,14 @@ export function sendPasswordEmail(formValues) {
   };
 }
 
-export function resetPassword(formValues) {
-  const request = axios.put(`${ROOT_URL}/users/password`, formValues);
+export function resetPassword(formValues, token) {
+  console.log('reset action', formValues, token);
+  const request = axios({
+    method: 'put',
+    data: formValues,
+    url: `${ROOT_URL}/users/password`,
+    headers: {'Authorization': `JWT ${token}`}
+  });
 
   return {
     type: RESET_PASSWORD,

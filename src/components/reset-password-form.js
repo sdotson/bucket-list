@@ -8,13 +8,14 @@ class ResetPasswordForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      this.context.router.push('/my-bucket-list');
+      // this.context.router.push('/my-bucket-list');
     }
   }
 
   render() {
-    const {asyncValidating, fields: {password, confirmPassword}, handleSubmit, submitting, user } = this.props;
-
+    const {asyncValidating, fields: {password, confirmPassword, token}, handleSubmit, submitting, user } = this.props;
+    console.log('params', this.props.location.query.token);
+    token.value = this.props.location.query.token;
     return (
       <div className="container">
         <div className="row">
@@ -34,11 +35,9 @@ class ResetPasswordForm extends Component {
                 <label>Confirm Password</label>
                 <input type="password" className="form-control" {...confirmPassword} />
                 <div className="help-block">
-                {asyncValidating === 'email' ? 'validating..': ''}
-                </div>
-                <div className="help-block">
                 {confirmPassword.touched ? confirmPassword.error : ''}
                 </div>
+                <input type="hidden" {...token} value={this.props.location.query.token} />
               </div>
               <button type="submit" className="btn btn btn-primary">
                 Reset Password

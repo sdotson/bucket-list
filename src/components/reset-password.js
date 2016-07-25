@@ -8,33 +8,33 @@ function validate(values) {
   var errors = {};
   var hasErrors = false;
   if (!values.password || values.password.trim() === '') {
-    errors.password = 'Enter email';
+    errors.password = 'Enter password';
     hasErrors = true;
   }
   if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Enter email';
+    errors.confirmPassword = 'Enter password';
     hasErrors = true;
   }
   // confirm that passwords match here
+  console.log('hasErrors', hasErrors && errors);
    return hasErrors && errors;
 }
 
 //For any field errors upon submission (i.e. not instant check)
 const resetUserPassword = (values, dispatch) => {
-
+  console.log('resetUser function fired');
+  console.log(resetPassword);
   return new Promise((resolve, reject) => {
-    console.log('values',values);
-   dispatch(resetPassword(values.password))
+    console.log('token', values.token);
+   return dispatch(resetPassword(values, values.token))
     .then((response) => {
         let data = response.payload.data;
-        //if any one of these exist, then there is a field error
+        console.log('data', data);
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
           dispatch(resetPasswordFailure(response.payload));
            reject(data); //this is for redux-form itself
          } else {
-
-          //let other components know that we got user and things are fine by updating the redux` state
           dispatch(resetPasswordSuccess(response.payload));
           resolve();//this is for redux-form itself
         }
@@ -44,7 +44,7 @@ const resetUserPassword = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   resetUserPassword
+   resetUserPassword: resetUserPassword
  };
 }
 
@@ -57,10 +57,11 @@ function mapStateToProps(state, ownProps) {
 
 export default reduxForm({
   form: 'ResetForm',
-  fields: ['password', 'confirmPassword'],
+  fields: ['password', 'confirmPassword', 'token'],
   initialValues: {
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    token: ''
   },
   null,
   validate
