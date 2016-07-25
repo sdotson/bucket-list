@@ -19,7 +19,7 @@ export default (
     <IndexRoute component={LogIn} />
     <Route path="/login" component={LogIn} />
     <Route path="/register" component={Register} />
-    <Route path="/send-password" component={SendPassword} />
+    <Route path="/send-password-email" component={SendPassword} />
     <Route path="/reset-password" component={ResetPassword} />
     <Route component={AuthenticatedComponent}>
       <Route path="my-bucket-list" component={ListMain} />

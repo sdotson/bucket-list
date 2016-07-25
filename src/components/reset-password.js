@@ -1,5 +1,5 @@
 import ResetPasswordForm from './reset-password-form.js';
-import { sendPasswordEmail } from '../actions/users';
+import { resetPassword, resetPasswordSuccess, resetPasswordFailure } from '../actions/users';
 import { reduxForm } from 'redux-form';
 
 
@@ -7,39 +7,35 @@ import { reduxForm } from 'redux-form';
 function validate(values) {
   var errors = {};
   var hasErrors = false;
-  if (!values.email || values.email.trim() === '') {
-    errors.email = 'Enter email';
+  if (!values.password || values.password.trim() === '') {
+    errors.password = 'Enter email';
     hasErrors = true;
   }
+  if (!values.confirmPassword || values.confirmPassword.trim() === '') {
+    errors.confirmPassword = 'Enter email';
+    hasErrors = true;
+  }
+  // confirm that passwords match here
    return hasErrors && errors;
 }
 
 //For any field errors upon submission (i.e. not instant check)
-const sendPassword = (values, dispatch) => {
+const resetUserPassword = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
     console.log('values',values);
-   dispatch(sendPasswordEmail(values))
+   dispatch(resetPassword(values.password))
     .then((response) => {
         let data = response.payload.data;
         //if any one of these exist, then there is a field error
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
-          dispatch(signInUserFailure(response.payload));
+          dispatch(resetPasswordFailure(response.payload));
            reject(data); //this is for redux-form itself
          } else {
-          //store JWT Token to browser session storage
-          //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
-          //sessionStorage = persisted only in current tab
-          sessionStorage.setItem('jwtToken', response.payload.data.token);
 
-          if (values.rememberme) {
-            localStorage.setItem('email', values.email);
-          } else {
-            localStorage.removeItem('email');
-          }
           //let other components know that we got user and things are fine by updating the redux` state
-          dispatch(signInUserSuccess(response.payload));
+          dispatch(resetPasswordSuccess(response.payload));
           resolve();//this is for redux-form itself
         }
       });
@@ -48,7 +44,7 @@ const sendPassword = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   sendPassword
+   resetUserPassword
  };
 }
 
@@ -61,9 +57,10 @@ function mapStateToProps(state, ownProps) {
 
 export default reduxForm({
   form: 'ResetForm',
-  fields: ['email'],
+  fields: ['password', 'confirmPassword'],
   initialValues: {
-    email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''
+    password: '',
+    confirmPassword: ''
   },
   null,
   validate

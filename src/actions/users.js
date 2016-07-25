@@ -14,9 +14,12 @@ export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 
 export const SEND_PASSWORD_EMAIL = 'SEND_PASSWORD_EMAIL';
-
 export const SEND_EMAIL_SUCCESS = 'SEND_EMAIL_SUCCESS';
 export const SEND_EMAIL_FAILURE = 'SEND_EMAIL_FAILURE';
+
+export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
 const ROOT_URL = 'http://192.241.148.238:3000/api';
 
@@ -93,5 +96,28 @@ export function sendPasswordEmail(formValues) {
   return {
     type: SEND_PASSWORD_EMAIL,
     payload: request
+  };
+}
+
+export function resetPassword(formValues) {
+  const request = axios.put(`${ROOT_URL}/users/password`, formValues);
+
+  return {
+    type: RESET_PASSWORD,
+    payload: request
+  };
+}
+
+export function resetPasswordFailure(error) {
+  return {
+    type: RESET_PASSWORD_FAILURE,
+    payload: error
+  };
+}
+
+export function resetPasswordSuccess(data) {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
+    payload: data
   };
 }

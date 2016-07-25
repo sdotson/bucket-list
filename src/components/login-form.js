@@ -34,7 +34,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-                <label>Password</label> <Link to="/reset-password">(Reset password)</Link>
+                <label>Password</label> <Link to="/send-password-email">(Reset password)</Link>
                 <input value="password" type="password" className="form-control" {...password} />
                 <div className="help-block">
                   {password.touched ? password.error : ''}

@@ -13,7 +13,7 @@ class ResetPasswordForm extends Component {
   }
 
   render() {
-    const {asyncValidating, fields: {email, password, rememberme}, handleSubmit, submitting, user } = this.props;
+    const {asyncValidating, fields: {password, confirmPassword}, handleSubmit, submitting, user } = this.props;
 
     return (
       <div className="container">
@@ -22,16 +22,22 @@ class ResetPasswordForm extends Component {
           <div className="main-login">
 
             <h3>Choose New Password</h3>
-            <p>Enter your email below. We will send you a link to reset your password.</p>
-            <form onSubmit={handleSubmit(this.props.signInUser.bind(this))} role="form">
-              <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
-                <label>Email</label>
-                <input value="user1@email.com" placeholder="user@email.com" type="text" className="form-control" {...email} />
+            <form onSubmit={handleSubmit(this.props.resetUserPassword.bind(this))} role="form">
+              <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
+                <label>Password</label>
+                <input type="password" className="form-control" {...password} />
                 <div className="help-block">
-                  {email.touched ? email.error : ''}
+                  {password.touched ? password.error : ''}
                 </div>
+              </div>
+              <div className={`form-group ${confirmPassword.touched && confirmPassword.invalid ? 'has-error' : ''}`}>
+                <label>Confirm Password</label>
+                <input type="password" className="form-control" {...confirmPassword} />
                 <div className="help-block">
                 {asyncValidating === 'email' ? 'validating..': ''}
+                </div>
+                <div className="help-block">
+                {confirmPassword.touched ? confirmPassword.error : ''}
                 </div>
               </div>
               <button type="submit" className="btn btn btn-primary">

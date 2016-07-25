@@ -21,7 +21,7 @@ class SendPasswordForm extends Component {
 
           <div className="main-login">
 
-            <h3>Reset Password</h3>
+            <h3>Send password reset email</h3>
             <p>Enter your email below. We will send you a link to reset your password.</p>
             <form onSubmit={handleSubmit(this.props.sendEmail.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
