@@ -15,7 +15,7 @@ import ResetPassword from './components/reset-password';
 import AuthenticatedComponent from './components/authenticated-component';
 
 export default (
-  <Route path="/bucket-list/" component={App}>
+  <Route path="/" component={App}>
     <IndexRoute component={LogIn} />
     <Route path="login" component={LogIn} />
     <Route path="register" component={Register} />
