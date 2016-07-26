@@ -15,7 +15,6 @@ export default class RegisterForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps.user);
     if(nextProps.user.authenticated === true || nextProps.user.registered === true) {
       this.context.router.push('my-bucket-list');
     }
