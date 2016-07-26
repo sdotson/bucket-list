@@ -6,7 +6,7 @@ import NavLink from './nav-link';
 export default () => {
   return (
     <ul className="nav navbar-nav">
-      <NavLink to="/completed">Completed Items</NavLink>
+      <NavLink to="completed">Completed Items</NavLink>
     </ul>
   );
 }

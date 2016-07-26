@@ -14,7 +14,7 @@ class NewItem extends Component {
 
   onSubmit(props) {
     this.props.createItem(props);
-    this.context.router.push('/my-bucket-list');
+    this.context.router.push('my-bucket-list');
   }
 
   render() {

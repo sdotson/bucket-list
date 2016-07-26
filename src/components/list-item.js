@@ -51,7 +51,7 @@ class ListItem extends Component {
           <hr />
           <h5>Categories</h5>
           {this.props.categories.map((c) =>
-            <Link to={'/categories/' + c} className="label label-default" key={c}>{c}</Link>
+            <Link to={'categories/' + c} className="label label-default" key={c}>{c}</Link>
           )}
         </div>
       </li>

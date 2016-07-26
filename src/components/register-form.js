@@ -10,14 +10,14 @@ export default class RegisterForm extends Component {
 
   componentWillMount() {
     if(this.props.user.authenticated === true || this.props.user.registered === true) {
-      this.context.router.push('/');
+      this.context.router.push('my-bucket-list');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('nextProps', nextProps.user);
     if(nextProps.user.authenticated === true || nextProps.user.registered === true) {
-      this.context.router.push('/');
+      this.context.router.push('my-bucket-list');
     }
   }
 

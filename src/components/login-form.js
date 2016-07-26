@@ -8,7 +8,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      this.context.router.push('/my-bucket-list');
+      this.context.router.push('my-bucket-list');
     }
   }
 
@@ -21,7 +21,7 @@ class LoginForm extends Component {
 
           <div className="main-login">
 
-            <h3>Please log in, or <Link to="/register">register</Link></h3>
+            <h3>Please log in, or <Link to="register">register</Link></h3>
             <form onSubmit={handleSubmit(this.props.signInUser.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>
@@ -34,7 +34,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-                <label>Password</label> <Link to="/send-password-email">(Reset password)</Link>
+                <label>Password</label> <Link to="send-password-email">(Reset password)</Link>
                 <input value="password" type="password" className="form-control" {...password} />
                 <div className="help-block">
                   {password.touched ? password.error : ''}
