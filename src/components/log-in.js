@@ -22,7 +22,6 @@ function validate(values) {
 const validateAndLogInUser = (values, dispatch) => {
 
   return new Promise((resolve, reject) => {
-    console.log('values',values);
    dispatch(signInUser(values))
     .then((response) => {
         let data = response.payload.data;
@@ -68,7 +67,7 @@ export default reduxForm({
   fields: ['email', 'password', 'rememberme'],
   initialValues: {
     email: localStorage.getItem('email') !== null ? localStorage.getItem('email') : '',
-    password: 'password',
+    password: '',
     rememberme: localStorage.getItem('email') !== null ? true : false
   },
   null,

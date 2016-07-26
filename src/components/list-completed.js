@@ -9,6 +9,7 @@ export default class ListCompleted extends Component {
     return (
       <div>
         <h1 className="page-header">Completed Items</h1>
+        <p><Link to="/">Return to main bucket list</Link></p>
         <List filter={ {completed: true} } />
       </div>
     );

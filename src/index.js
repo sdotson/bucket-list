@@ -9,23 +9,6 @@ import routes from './routes';
 import App from './components/app';
 import reducers from './reducers';
 
-/*
-
-state
-{
-  filter: completed/noncompleted
-  list-items: all list items
-}
-
-http://192.241.148.238:3000/
-
-3 routes
-/ all list items
-/list-items/completed
-/list-items/new create new list item
-
-*/
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(

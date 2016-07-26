@@ -51,8 +51,8 @@ class List extends Component {
 }
 
 function mapStateToProps(state, props) {
-  var filter = props.filter;
-  console.log('state',state);
+  const filter = props.filter;
+
   return {
     items: state.items.list,
     error: state.items.error,
