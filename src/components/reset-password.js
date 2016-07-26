@@ -1,7 +1,7 @@
 import ResetPasswordForm from './reset-password-form.js';
 import { resetPassword, resetPasswordSuccess, resetPasswordFailure } from '../actions/users';
 import { reduxForm } from 'redux-form';
-
+import { browserHistory } from 'react-router';
 
 //Client side validation
 function validate(values) {
@@ -24,20 +24,19 @@ function validate(values) {
    return hasErrors && errors;
 }
 
-//For any field errors upon submission (i.e. not instant check)
 const resetUserPassword = (values, dispatch) => {
   return new Promise((resolve, reject) => {
    dispatch(resetPassword(values, values.token))
     .then((response) => {
         let data = response.payload.data;
-        console.log('response', response);
         if(response.payload.status != 200) {
           //let other components know of error by updating the redux` state
           dispatch(resetPasswordFailure(response.payload));
-           reject(data); //this is for redux-form itself
+           reject(data);
          } else {
           dispatch(resetPasswordSuccess(response.payload));
-          resolve();//this is for redux-form itself
+          browserHistory.push('/password-success');
+          resolve();
         }
       });
   });
@@ -58,7 +57,7 @@ function mapStateToProps(state, ownProps) {
 
 function getUrlParam(param) {
   let arr = document.URL.match(/token=([\w0-9.\-_]+)/);
-  return arr[1];
+  return arr && arr[1];
 }
 
 export default reduxForm({

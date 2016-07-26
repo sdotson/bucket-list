@@ -12,6 +12,8 @@ import LogIn from './components/log-in';
 import Register from './components/register';
 import SendPassword from './components/send-password';
 import ResetPassword from './components/reset-password';
+import PasswordSuccess from './components/password-success';
+import EmailSuccess from './components/email-success';
 import AuthenticatedComponent from './components/authenticated-component';
 
 export default (
@@ -21,6 +23,8 @@ export default (
     <Route path="/register" component={Register} />
     <Route path="/send-password-email" component={SendPassword} />
     <Route path="/reset-password" component={ResetPassword} />
+    <Route path="/password-success" component={PasswordSuccess} />
+    <Route path="/email-success" component={EmailSuccess} />
     <Route component={AuthenticatedComponent}>
       <Route path="my-bucket-list" component={ListMain} />
       <Route path="completed" component={ListCompleted} />

@@ -1,7 +1,7 @@
 import SendPasswordForm from './send-password-form.js';
 import { sendPasswordEmail, sendEmailFailure, sendEmailSuccess } from '../actions/users';
 import { reduxForm } from 'redux-form';
-
+import { browserHistory } from 'react-router';
 
 //Client side validation
 function validate(values) {
@@ -29,6 +29,7 @@ const sendEmail = (values, dispatch) => {
            reject(data); //this is for redux-form itself
          } else {
           dispatch(sendEmailSuccess(response.payload));
+          browserHistory.push('/email-success');
           resolve();//this is for redux-form itself
         }
       });
