@@ -142,6 +142,7 @@ export function editItem(props) {
 }
 
 export function completeItem(props) {
+  console.log('completeItem', props);
   const request = axios({
     method: 'put',
     data: { _id: props._id ,completed: !props.completed },
