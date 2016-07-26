@@ -100,12 +100,12 @@ export function sendPasswordEmail(formValues) {
 }
 
 export function resetPassword(formValues, token) {
-  console.log('reset action', formValues, token);
+  let token = token ? `JWT ${token}` : sessionStorage.getItem('jwtToken');
   const request = axios({
     method: 'put',
     data: formValues,
     url: `${ROOT_URL}/users/password`,
-    headers: {'Authorization': `JWT ${token}`}
+    headers: {'Authorization': `${token}`}
   });
 
   return {
