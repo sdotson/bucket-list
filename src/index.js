@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { createHistory, useBasename } from 'history';
-import { Router } from 'react-router';
+import { Router, useRouterHistory } from 'react-router';
+import { createHistory } from 'history';
 import promise from 'redux-promise';
 
 import routes from './routes';
@@ -12,12 +12,12 @@ import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-const browserHistory = useBasename(createHistory)({
+const history = useRouterHistory(createHistory)({
     basename: "/bucket-list"
 });
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory} routes={routes} />
+    <Router history={history} routes={routes} />
   </Provider>
   , document.querySelector('#app'));
