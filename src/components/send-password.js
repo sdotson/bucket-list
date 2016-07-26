@@ -1,7 +1,6 @@
 import SendPasswordForm from './send-password-form.js';
 import { sendPasswordEmail, sendEmailFailure, sendEmailSuccess } from '../actions/users';
 import { reduxForm } from 'redux-form';
-import { browserHistory } from 'react-router';
 
 //Client side validation
 function validate(values) {
@@ -16,21 +15,17 @@ function validate(values) {
 
 //For any field errors upon submission (i.e. not instant check)
 const sendEmail = (values, dispatch) => {
-
   return new Promise((resolve, reject) => {
-    console.log('values',values);
    dispatch(sendPasswordEmail(values))
     .then((response) => {
         let data = response.payload.data;
-        console.log('data', data);
         if(response.payload.status != 200) {
-          //let other components know of error by updating the redux` state
+        
           dispatch(sendEmailFailure(response.payload));
-           reject(data); //this is for redux-form itself
+           reject(data);
          } else {
           dispatch(sendEmailSuccess(response.payload));
-          browserHistory.push('/email-success');
-          resolve();//this is for redux-form itself
+          resolve();
         }
       });
   });

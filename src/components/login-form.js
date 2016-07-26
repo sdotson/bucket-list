@@ -21,7 +21,7 @@ class LoginForm extends Component {
 
           <div className="main-login">
 
-            <h3>Please Log In, or <Link to="/register">Sign Up</Link></h3>
+            <h3>Please log in, or <Link to="/register">register</Link></h3>
             <form onSubmit={handleSubmit(this.props.signInUser.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>

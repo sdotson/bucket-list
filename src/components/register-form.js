@@ -30,7 +30,7 @@ export default class RegisterForm extends Component {
 
           <div className="main-login">
 
-            <h3>Sign up</h3>
+            <h3>Register</h3>
             <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))} role="form">
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label>Email</label>
@@ -50,7 +50,7 @@ export default class RegisterForm extends Component {
                 </div>
               </div>
               <button type="submit" className="btn btn btn-primary">
-                Sign up
+                Register
               </button>
             </form>
             { this.props.user.error ?

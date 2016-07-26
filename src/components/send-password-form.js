@@ -8,7 +8,7 @@ class SendPasswordForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      this.context.router.push('/my-bucket-list');
+      // this.context.router.push('/my-bucket-list');
     }
   }
 
@@ -35,12 +35,19 @@ class SendPasswordForm extends Component {
                 </div>
               </div>
               <button type="submit" className="btn btn btn-primary">
-                Reset Password
+                Send Email
               </button>
             </form>
-            { this.props.user.error ?
+            { this.props.user.emailError ?
               <div className="alert alert-danger" style={{marginTop: '20px'}}>
                 <strong>Error</strong> The email and/or password provided are not correct. Please try again
+              </div>
+              :
+              ''
+            }
+            { this.props.user.emailError === false ?
+              <div className="alert alert-success" style={{marginTop: '20px'}}>
+                <strong>Success</strong> The email was sent successfully.
               </div>
               :
               ''

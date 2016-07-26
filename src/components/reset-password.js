@@ -1,7 +1,6 @@
 import ResetPasswordForm from './reset-password-form.js';
 import { resetPassword, resetPasswordSuccess, resetPasswordFailure } from '../actions/users';
 import { reduxForm } from 'redux-form';
-import { browserHistory } from 'react-router';
 
 //Client side validation
 function validate(values) {
@@ -17,7 +16,7 @@ function validate(values) {
   }
 
   if (values.confirmPassword !== values.password) {
-    errors.passwordMatch = 'The passwords do not match';
+    errors.confirmPassword = 'The passwords must match';
     hasErrors = true;
   }
   // confirm that passwords match here
@@ -35,7 +34,6 @@ const resetUserPassword = (values, dispatch) => {
            reject(data);
          } else {
           dispatch(resetPasswordSuccess(response.payload));
-          browserHistory.push('/password-success');
           resolve();
         }
       });

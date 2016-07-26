@@ -21,6 +21,8 @@ export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
+export const RESET_USER = 'RESET_USER';
+
 const ROOT_URL = 'http://192.241.148.238:3000/api';
 
 export function signUpUser(formValues) {
@@ -125,5 +127,11 @@ export function resetPasswordSuccess(data) {
   return {
     type: RESET_PASSWORD_SUCCESS,
     payload: data
+  };
+}
+
+export function resetUser() {
+  return {
+    type: RESET_USER
   };
 }

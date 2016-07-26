@@ -14,7 +14,6 @@ class ResetPasswordForm extends Component {
 
   render() {
     const {asyncValidating, fields: {password, confirmPassword, token}, handleSubmit, submitting, user } = this.props;
-    console.log('params', this.props.location.query.token);
     token.value = this.props.location.query.token;
     return (
       <div className="container">
@@ -35,7 +34,7 @@ class ResetPasswordForm extends Component {
                 <label>Confirm Password</label>
                 <input type="password" className="form-control" {...confirmPassword} />
                 <div className="help-block">
-                {confirmPassword.touched ? confirmPassword.error : ''}
+                  {confirmPassword.touched ? confirmPassword.error : ''}
                 </div>
                 <input type="hidden" {...token} value={this.props.location.query.token} />
               </div>
@@ -43,9 +42,16 @@ class ResetPasswordForm extends Component {
                 Reset Password
               </button>
             </form>
-            { this.props.user.error ?
+            { this.props.user.passwordError ?
               <div className="alert alert-danger" style={{marginTop: '20px'}}>
-                <strong>Error</strong> The email and/or password provided are not correct. Please try again
+                <strong>Error</strong> Your attempt to update your password failed. Please make sure you are logged in or that you clicked the correct link in your email.
+              </div>
+              :
+              ''
+            }
+            { this.props.user.passwordError === false ?
+              <div className="alert alert-success" style={{marginTop: '20px'}}>
+                <strong>Error</strong> Your password was changed successfully.
               </div>
               :
               ''
