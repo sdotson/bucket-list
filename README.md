@@ -13,5 +13,6 @@ The app is now live: http://stuartdotson.com/bucket-list/
 * Add tests
 * Add favicon
 * Improve UI
+* Make mobile menu functional
 * Make it less buggy while doing local development (consider a separate environment configuration for local and dev)
 * Abstract this and bucket-list-server out into a single simple example app.
