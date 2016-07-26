@@ -6,12 +6,6 @@ class ResetPasswordForm extends Component {
     router: PropTypes.object
   };
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.user.authenticated === true) {
-      // this.context.router.push('/my-bucket-list');
-    }
-  }
-
   render() {
     const {asyncValidating, fields: {password, confirmPassword, token}, handleSubmit, submitting, user } = this.props;
     token.value = this.props.location.query.token;

@@ -6,12 +6,6 @@ class SendPasswordForm extends Component {
     router: PropTypes.object
   };
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.user.authenticated === true) {
-      // this.context.router.push('/my-bucket-list');
-    }
-  }
-
   render() {
     const {asyncValidating, fields: {email}, handleSubmit, submitting, user } = this.props;
 
