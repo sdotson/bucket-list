@@ -21,7 +21,7 @@ class Nav extends Component {
     let authenticated = this.props.authenticated;
 
     return (
-      <nav className="navbar navbar-inverse">
+      <nav className="navbar">
   	      <div className="container">
   	        <div className="navbar-header">
   	          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,20 +32,18 @@ class Nav extends Component {
   	          </button>
               {
                 authenticated ?
-                <NavLink className="navbar-brand" to="/my-bucket-list">Bucket List</NavLink>
+                <Link className="navbar-brand" to="/my-bucket-list">Bucket List</Link>
                 :
-                <NavLink className="navbar-brand" to="/">Bucket List</NavLink>
+                <Link className="navbar-brand" to="/">Bucket List</Link>
               }
   	        </div>
   	        <div id="navbar" className="collapse navbar-collapse">
-  	          <ul className="nav navbar-nav">
-                {
-                  authenticated ?
-                  <NavLoggedIn />
-                  :
-                  ''
-                }
-  	          </ul>
+              {
+                authenticated ?
+                <NavLoggedIn />
+                :
+                ''
+              }
               <ul className="nav navbar-nav navbar-right">
                 {
                   authenticated ?

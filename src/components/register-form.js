@@ -37,9 +37,6 @@ export default class RegisterForm extends Component {
                 <div className="help-block">
                   {email.touched ? email.error : ''}
                 </div>
-                <div className="help-block">
-                {asyncValidating === 'email' ? 'validating..': ''}
-                </div>
               </div>
               <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
                 <label>Password</label>

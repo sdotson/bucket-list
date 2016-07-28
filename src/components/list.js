@@ -34,9 +34,9 @@ class List extends Component {
   render() {
     return (
       <div>
-        <ul className="list-group">
+        <div className="item-list">
           {this.renderList()}
-        </ul>
+        </div>
         {
           this.props.error ?
             <div className="alert alert-danger" style={{marginTop: '20px'}}>
