@@ -8,11 +8,14 @@ If you see something that could be improved, let me know!
 
 The app is now live: http://stuartdotson.com/bucket-list/
 
+## Setup
+1. `npm install`
+2. `npm start`
+3. Go to `localhost:8080` in your browser.
+
 ## TO DO
 * Clean up all code
 * Add tests
-* Add favicon
-* Make it less buggy while doing local development (consider a separate environment configuration for local and dev)
 * Abstract this and bucket-list-server out into a single simple example app.
 * set up push to deploy functionality
 * fix javascript console error
