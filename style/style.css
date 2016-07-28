@@ -64,8 +64,16 @@
   background-color: #004f44;
 }
 
-a, h1, h2, h3, h4 {
+a {
   color: #06806f;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #004f44;
+}
+
+.small-text {
+  font-size: 10px;
 }
 
 a:hover {
@@ -81,4 +89,17 @@ a:hover {
 .btn-primary:hover {
   background-color: #cc860a;
   border-color: #cc860a;
+}
+/* mobile nav */
+.navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+
+@media (max-width: 768px) {
+	.navbar-header {
+		background-color: #06806f;
+	}
+	.navbar {
+		background: #1a9685;
+	}
 }

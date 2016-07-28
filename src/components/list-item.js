@@ -29,17 +29,13 @@ class ListItem extends Component {
         </div>
         <div className="details">
           <div>
-            <hr />
-            <h5>Description</h5>
             <p>
             {this.props.description}
             </p>
-            <p>
+            <p className="small-text">
             Added {moment(this.props.added).format('dddd, MMMM Do, YYYY')}.
             </p>
           </div>
-          <hr />
-          <h5>Categories</h5>
           {this.props.categories.map((c) =>
             <Link to={'categories/' + c} className="label label-default" key={c}>{c}</Link>
           )}

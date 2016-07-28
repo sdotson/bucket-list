@@ -12,9 +12,18 @@ class Nav extends Component {
     router: PropTypes.object
   }
 
+  constructor(props) {
+		super(props);
+		this.state = { menuVisible: false };
+	}
+
   logout(e) {
     this.props.logoutUser();
     this.context.router.push('/');
+  }
+
+  toggleNav() {
+    this.setState({menuVisible: !this.state.menuVisible });
   }
 
   render() {
@@ -24,7 +33,7 @@ class Nav extends Component {
       <nav className="navbar">
   	      <div className="container">
   	        <div className="navbar-header">
-  	          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+  	          <button onClick={ e => this.toggleNav() } type="button" className="navbar-toggle" aria-expanded="false" aria-controls="navbar">
   	            <span className="sr-only">Toggle navigation</span>
   	            <span className="icon-bar"></span>
   	            <span className="icon-bar"></span>
@@ -37,7 +46,7 @@ class Nav extends Component {
                 <Link className="navbar-brand" to="/">Bucket List</Link>
               }
   	        </div>
-  	        <div id="navbar" className="collapse navbar-collapse">
+  	        <div id="navbar" className={this.state.menuVisible === false ? "collapse navbar-collapse" : ""}>
               {
                 authenticated ?
                 <NavLoggedIn />
