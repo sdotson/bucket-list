@@ -53,14 +53,14 @@ class Nav extends Component {
                 :
                 ''
               }
-              <ul className="nav navbar-nav navbar-right">
                 {
                   authenticated ?
-                  <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
+                  <ul className="nav navbar-nav navbar-right">
+                    <li><a href="" onClick={e => {e.preventDefault(); this.logout()}}>Logout</a></li>
+                  </ul>
                   :
                   <NavLoggedOut />
                 }
-              </ul>
   	        </div>
   	      </div>
   	    </nav>
