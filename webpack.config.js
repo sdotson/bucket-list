@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin({
-      'process.env.NODE_ENV': '"productions"',
+      'process.env.NODE_ENV': '"production"',
     })
   ],
   entry: [
