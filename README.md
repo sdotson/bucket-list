@@ -12,9 +12,6 @@ The app is now live: http://stuartdotson.com/bucket-list/
 * Clean up all code
 * Add tests
 * Add favicon
-* Improve UI
-* find out why category routes are broken
-* Make mobile menu functional
 * Make it less buggy while doing local development (consider a separate environment configuration for local and dev)
 * Abstract this and bucket-list-server out into a single simple example app.
 * set up push to deploy functionality
