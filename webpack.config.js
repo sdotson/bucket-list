@@ -2,7 +2,9 @@ const webpack = require('webpack');
 
 module.exports = {
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV'])
+    new webpack.EnvironmentPlugin({
+      'process.env.NODE_ENV': '"productions"',
+    })
   ],
   entry: [
     './src/index.js'
