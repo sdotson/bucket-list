@@ -28,6 +28,7 @@
   "dependencies": {
     "axios": "^0.13.1",
     "babel-preset-stage-1": "^6.1.18",
+    "bootstrap": "^3.3.7",
     "history": "^2.1.2",
     "lodash": "^3.10.1",
     "moment": "^2.14.1",
