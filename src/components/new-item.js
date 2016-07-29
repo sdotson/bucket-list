@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import { browserHistory } from 'react-router';
 
 import { connect } from 'react-redux';
 import { addItem } from '../actions/index';
@@ -8,13 +9,12 @@ import CheckboxGroup from './checkbox-group';
 import { createItem } from '../actions/items';
 
 class NewItem extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   onSubmit(props) {
-    this.props.createItem(props);
-    this.context.router.push('my-bucket-list');
+    this.props.createItem(props).then(function(result) {
+      browserHistory.push('/my-bucket-list');
+    });
+    // should add error handling here as well
   }
 
   render() {

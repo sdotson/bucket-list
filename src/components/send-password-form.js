@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 class SendPasswordForm extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   render() {
     const {asyncValidating, fields: {email}, handleSubmit, submitting, user } = this.props;

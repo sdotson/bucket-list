@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import NavLink from './nav-link';
 import NavLoggedIn from './nav-logged-in';
@@ -8,9 +8,6 @@ import NavLoggedOut from './nav-logged-out';
 import { logoutUser } from '../actions/users';
 
 class Nav extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  }
 
   constructor(props) {
 		super(props);
@@ -19,7 +16,7 @@ class Nav extends Component {
 
   logout(e) {
     this.props.logoutUser();
-    this.context.router.push('/');
+    browserHistory.push('/');
   }
 
   toggleNav() {

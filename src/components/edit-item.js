@@ -1,15 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 
 import { connect } from 'react-redux';
 import { fetchItem, fetchItemSuccess, fetchItemFailure, editItem } from '../actions/items';
+import { browserHistory } from 'react-router';
 
 import CheckboxGroup from './checkbox-group';
 
 class EditItem extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   componentWillMount() {
     this.props.fetchItem(this.props.params.item_id);
@@ -17,7 +15,7 @@ class EditItem extends Component {
 
   onSubmit(props) {
     this.props.editItem(props);
-    this.context.router.push('/my-bucket-list');
+    browserHistory.push('/my-bucket-list');
   }
 
   render() {

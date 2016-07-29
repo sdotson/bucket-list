@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class LoginForm extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      this.context.router.push('my-bucket-list');
+      browserHistory.push('my-bucket-list');
     }
   }
 

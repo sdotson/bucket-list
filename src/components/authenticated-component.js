@@ -1,11 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
-import {pushState} from 'react-router';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { pushState } from 'react-router';
 
 class AuthenticatedComponent extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
     componentWillMount() {
         this.checkAuth();

@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 class ResetPasswordForm extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  };
 
   render() {
     const {asyncValidating, fields: {password, confirmPassword, token}, handleSubmit, submitting, user } = this.props;
