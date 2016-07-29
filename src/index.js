@@ -26,6 +26,6 @@ if (hostname === 'localhost') {
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={history} routes={routes} />
+    <Router history={browserHistory} routes={routes} />
   </Provider>
   , document.querySelector('#app'));
