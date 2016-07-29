@@ -16,7 +16,7 @@ class AuthenticatedComponent extends Component {
       const token = sessionStorage.getItem('jwtToken');
 
       if (this.props.authenticated !== true) {
-        browserHistory.push('/');
+        browserHistory.push('login');
       }
     }
 
