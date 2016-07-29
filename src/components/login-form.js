@@ -5,7 +5,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.authenticated === true) {
-      browserHistory.push('/my-bucket-list');
+      browserHistory.push('my-bucket-list');
     }
   }
 
