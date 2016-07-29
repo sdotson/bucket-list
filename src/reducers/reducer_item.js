@@ -1,12 +1,16 @@
-export default function(state = {}, action) {
+export default function(state = { fetchError: false }, action) {
+  let results;
   switch(action.type) {
     case 'FETCH_ITEM':
-      return action.payload.data[0] || state;
+      results = action.payload.data;
+      return {...state, fetchError: false};
     case 'FETCH_ITEM_SUCCESS':
-      return action.payload.data[0];
+      results = action.payload.data[0];
+      return {...state, ...results};
     case 'FETCH_ITEM_FAILURE':
-      var error = action.payload.data[0] || action.payload.message;//2nd one is network or server down errors
-      return error;
+      var error = action.payload.data || action.payload.message;//2nd one is network or server down errors
+      console.log('fetchItem failed', action.payload, action.error);
+      return {...state, fetchError: true, error};
     default:
       return state;
   }

@@ -120,6 +120,7 @@ export function fetchItemSuccess(activeItem) {
 }
 
 export function fetchItemFailure(error) {
+  console.log('fetchItemFailure error', error);
   return {
     type: FETCH_ITEM_FAILURE,
     payload: error

@@ -24,23 +24,30 @@ class EditItem extends Component {
 
     return (
       <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <div className="form-group">
-            <label>Title</label>
-            <input type="text" className="form-control" {...title} />
+        { this.props.selectedItem.fetchError ?
+          <div className="alert alert-danger" style={{marginTop: '20px'}}>
+            <strong>Error</strong> There was an error fetching this item. Are you sure the url is correct?
           </div>
-          <div className="form-group">
-            <label>Description</label>
-            <textarea {...description} className="form-control"></textarea>
-          </div>
-          <div className="form-group">
-            <label>Categories</label>
-            <CheckboxGroup options={categoriesArray} fieldName={categories} />
-          </div>
-          <div className="form-group">
-            <input type="submit" className="btn btn-primary" value="Update Item" />
-          </div>
-        </form>
+          :
+          
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div className="form-group">
+              <label>Title</label>
+              <input type="text" className="form-control" {...title} />
+            </div>
+            <div className="form-group">
+              <label>Description</label>
+              <textarea {...description} className="form-control"></textarea>
+            </div>
+            <div className="form-group">
+              <label>Categories</label>
+              <CheckboxGroup options={categoriesArray} fieldName={categories} />
+            </div>
+            <div className="form-group">
+              <input type="submit" className="btn btn-primary" value="Update Item" />
+            </div>
+          </form>
+        }
       </div>
     );
   }
@@ -52,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchItem: (id) => {
       dispatch(fetchItem(id)).then((response) => {
-        !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
+        console.log('response', response);
+        !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response));
       });
     },
     editItem: (props) => {
@@ -65,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state) {
   return {
-    initialValues: state.selectedItem
+    initialValues: state.selectedItem,
+    selectedItem: state.selectedItem
   };
 }
 
