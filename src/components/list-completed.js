@@ -7,7 +7,7 @@ export default (props) => {
   return (
     <div>
       <h1 className="page-header">Completed Items</h1>
-      <p><Link to="/">Return to main bucket list</Link></p>
+      <p><Link to="my-bucket-list">Return to main bucket list</Link></p>
       <List filter={ {completed: true} } />
     </div>
   );
