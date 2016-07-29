@@ -60,7 +60,7 @@
   color: #fff;
 }
 
-.navbar li.active a, .navbar li a:focus {
+.navbar li a.active, .navbar li a:focus {
   background-color: #004f44;
 }
 

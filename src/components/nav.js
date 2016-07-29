@@ -41,9 +41,9 @@ class Nav extends Component {
   	          </button>
               {
                 authenticated ?
-                <Link className="navbar-brand" to="/my-bucket-list">Bucket List</Link>
+                <Link className="navbar-brand" to="/my-bucket-list" activeClassName="active">Bucket List</Link>
                 :
-                <Link className="navbar-brand" to="/">Bucket List</Link>
+                <Link className="navbar-brand" to="/" activeClassName="active">Bucket List</Link>
               }
   	        </div>
   	        <div id="navbar" className={this.state.menuVisible === false ? "collapse navbar-collapse" : ""}>
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps, { logoutUser })(Nav);
+export default connect(mapStateToProps, { logoutUser }, null, { pure: false })(Nav);

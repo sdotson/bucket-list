@@ -6,9 +6,9 @@
   "repository": "git@github.com:sdotson/bucket-list.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
-    "build": "webpack -p --optimize-minimize --define process.env.NODE_ENV='\"production\"' --progress --colors"
+    "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --optimize-minimize  --progress --colors"
   },
   "author": "Stuart Dotson",
   "license": "ISC",
