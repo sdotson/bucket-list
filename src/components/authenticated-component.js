@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { pushState } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class AuthenticatedComponent extends Component {
 
@@ -16,8 +16,7 @@ class AuthenticatedComponent extends Component {
       const token = sessionStorage.getItem('jwtToken');
 
       if (this.props.authenticated !== true) {
-        let redirectAfterLogin = this.props.location.pathname;
-        this.context.router.push('/');
+        browserHistory.push('/');
       }
     }
 
