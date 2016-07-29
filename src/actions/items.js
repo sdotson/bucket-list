@@ -20,6 +20,8 @@ export const RESET_ACTIVE_ITEM = 'RESET_ACTIVE_ITEM';
 
 // Edit item
 export const EDIT_ITEM = 'EDIT_ITEM';
+export const EDIT_ITEM_SUCCESS = 'EDIT_ITEM_SUCCESS';
+export const EDIT_ITEM_FAILURE = 'EDIT_ITEM_FAILURE';
 
 export const COMPLETE_ITEM = 'COMPLETE_ITEM';
 
@@ -111,7 +113,6 @@ export function fetchItem(id) {
   };
 }
 
-
 export function fetchItemSuccess(activeItem) {
   return {
     type: FETCH_ITEM_SUCCESS,
@@ -120,7 +121,6 @@ export function fetchItemSuccess(activeItem) {
 }
 
 export function fetchItemFailure(error) {
-  console.log('fetchItemFailure error', error);
   return {
     type: FETCH_ITEM_FAILURE,
     payload: error
@@ -142,8 +142,21 @@ export function editItem(props) {
   };
 }
 
+export function editItemSuccess(activeItem) {
+  return {
+    type: EDIT_ITEM_SUCCESS,
+    payload: activeItem
+  };
+}
+
+export function editItemFailure(error) {
+  return {
+    type: EDIT_ITEM_FAILURE,
+    payload: error
+  };
+}
+
 export function completeItem(props) {
-  console.log('completeItem', props);
   const request = axios({
     method: 'put',
     data: { _id: props._id ,completed: !props.completed },

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 
 import { connect } from 'react-redux';
-import { fetchItem, fetchItemSuccess, fetchItemFailure, editItem } from '../actions/items';
+import { fetchItem, fetchItemSuccess, fetchItemFailure, editItem, editItemSuccess, editItemFailure } from '../actions/items';
 import { browserHistory } from 'react-router';
 
 import CheckboxGroup from './checkbox-group';
@@ -15,7 +15,6 @@ class EditItem extends Component {
 
   onSubmit(props) {
     this.props.editItem(props);
-    browserHistory.push('/my-bucket-list');
   }
 
   render() {
@@ -24,12 +23,19 @@ class EditItem extends Component {
 
     return (
       <div>
-        { this.props.selectedItem.fetchError ?
+        {selectedItem.fetchError ?
           <div className="alert alert-danger" style={{marginTop: '20px'}}>
             <strong>Error</strong> There was an error fetching this item. Are you sure the url is correct?
           </div>
+        : '' }
+        { selectedItem.editError ?
+          <div className="alert alert-danger" style={{marginTop: '20px'}}>
+            <strong>Error</strong> There was error sending this edit request to the server. Please try again later.
+          </div>
+        : '' }
+        { selectedItem.fetchError || selectedItem.editError ?
+          ''
           :
-          
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <div className="form-group">
               <label>Title</label>
@@ -65,7 +71,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     editItem: (props) => {
       dispatch(editItem(props)).then((response) => {
-        // !response.error ? dispatch(fetchItemSuccess(response.payload)) : dispatch(fetchItemFailure(response.payload));
+        if (!response.error) {
+          dispatch(editItemSuccess(response.payload));
+          browserHistory.push('/my-bucket-list');
+        } else {
+          dispatch(editItemFailure(response));
+        }
       });
     }
   }
@@ -79,9 +90,9 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'ItemsEditForm',
-  fields: ['_id','title', 'description', 'categories']
-},
-mapStateToProps,
-mapDispatchToProps
+    form: 'ItemsEditForm',
+    fields: ['_id','title', 'description', 'categories']
+  },
+  mapStateToProps,
+  mapDispatchToProps
 )(EditItem)
