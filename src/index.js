@@ -14,16 +14,6 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 const hostname = document.location.hostname;
 
-let history;
-
-if (hostname === 'localhost') {
-  history = browserHistory;
-} else {
-  history = useRouterHistory(createHistory)({
-    basename: "/bucket-list"
-  });
-}
-
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory} routes={routes} />
