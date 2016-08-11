@@ -18,3 +18,4 @@ The app is now live: http://stuartdotson.com/bucket-list/
 * Abstract this and bucket-list-server out into a single simple example app.
 * fix javascript console error
 * throw separate errors for login and register and make sure they reset when you go from login route to register and vice versa
+* make links easier to see
