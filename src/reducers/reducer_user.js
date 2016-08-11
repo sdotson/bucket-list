@@ -30,7 +30,7 @@ export default function(state = INITIAL_STATE, action) {
 
 
     case SIGNIN_USER:// sign in user,  set loading = true and status = signin
-      return { ...state, user: null, authenticated:'signin', error:null};
+      return { ...state, user: null, authenticated:false, error:null};
     case SIGNIN_USER_SUCCESS://return authenticated user,  make loading = false and status = authenticated
       return { ...state, user: action.payload.data, authenticated: true, error:null}; //<-- authenticated
     case SIGNIN_USER_FAILURE:// return error and make loading = false

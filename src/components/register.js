@@ -5,36 +5,30 @@ import { Link } from 'react-router';
 import RegisterForm from './register-form';
 
 const validateAndLogInUser = (values, dispatch) => {
-
-return new Promise((resolve, reject) => {
-
- dispatch(signUpUser(values))
-  .then((response) => {
+  return new Promise((resolve, reject) => {
+   return dispatch(signUpUser(values))
+    .then((response) => {
       let data = response.payload.data;
-      
-      if(response.payload.status != 201) {
 
+      if(response.payload.status != 201) {
         dispatch(signUpUserFailure(response.payload));
          reject(data);
        } else {
-
-        dispatch(signInUser(values))
+        return dispatch(signInUser(values))
         .then((response) => {
-            let data = response.payload.data;
+          let data = response.payload.data;
 
-            if(response.payload.status != 200) {
+          if(response.payload.status != 200) {
 
-              dispatch(signInUserFailure(response.payload));
-               reject(data);
-             } else {
+            dispatch(signInUserFailure(response.payload));
+             reject(data);
+           } else {
+            sessionStorage.setItem('jwtToken', response.payload.data.token);
 
-              sessionStorage.setItem('jwtToken', response.payload.data.token);
-
-              dispatch(signInUserSuccess(response.payload));
-              resolve();
-
-            }
-          });
+            dispatch(signInUserSuccess(response.payload));
+            resolve();
+          }
+        });
       }
     });
   });
